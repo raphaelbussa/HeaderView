@@ -48,7 +48,7 @@ import android.widget.TextView;
 public class HeaderView extends RelativeLayout {
 
     private ImageView headerBackground;
-    private ImageView avatar;
+    private AvatarView avatar;
     private TextView userName;
     private TextView userEmail;
     private HeaderInterface.OnHeaderClickListener onHeaderClickListener;
@@ -123,7 +123,7 @@ public class HeaderView extends RelativeLayout {
         userEmail.setLayoutParams(textParams);
         LinearLayout.LayoutParams avatarParams = new LinearLayout.LayoutParams(avatarSize, avatarSize);
         avatarParams.setMargins(0, 0, 0, marginSize);
-        avatar = new Avatar(getContext());
+        avatar = new AvatarView(getContext());
         avatar.setLayoutParams(avatarParams);
         avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
         linearLayout.addView(avatar);
@@ -136,7 +136,7 @@ public class HeaderView extends RelativeLayout {
         return headerBackground;
     }
 
-    public ImageView avatar() {
+    public AvatarView avatar() {
         return avatar;
     }
 
@@ -157,56 +157,6 @@ public class HeaderView extends RelativeLayout {
             }
         }
         return result;
-    }
-
-    private static class Avatar extends ImageView {
-
-        public Avatar(Context context) {
-            super(context);
-        }
-
-        public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
-            Bitmap bitmap;
-            if (bmp.getWidth() != radius || bmp.getHeight() != radius) {
-                bitmap = Bitmap.createScaledBitmap(bmp, radius, radius, false);
-            } else {
-                bitmap = bmp;
-            }
-            Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(output);
-
-            final Paint paint = new Paint();
-            final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-            paint.setAntiAlias(true);
-            paint.setFilterBitmap(true);
-            paint.setDither(true);
-            canvas.drawARGB(0, 0, 0, 0);
-            paint.setColor(Color.parseColor("#BAB399"));
-            canvas.drawCircle(bitmap.getWidth() / 2 + 0.7f, bitmap.getHeight() / 2 + 0.7f, bitmap.getWidth() / 2 + 0.1f, paint);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-            canvas.drawBitmap(bitmap, rect, rect, paint);
-
-
-            return output;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            Drawable drawable = getDrawable();
-            if (drawable == null) {
-                return;
-            }
-            if (getWidth() == 0 || getHeight() == 0) {
-                return;
-            }
-            Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-            Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-            int w = getWidth();
-            Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
-            canvas.drawBitmap(roundBitmap, 0, 0, null);
-        }
-
     }
 
 }
