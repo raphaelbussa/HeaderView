@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion 22
@@ -16,4 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    publish {
+        userOrg = 'raphaelbussa'
+        groupId = 'rebus'
+        artifactId = 'header-view'
+        publishVersion = '1.0.0'
+    }
+
 }
