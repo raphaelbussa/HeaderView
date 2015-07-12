@@ -1,4 +1,6 @@
 # Header-View
+[ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion)
+
 This is a view for NavigationView in android.support.design library
 
 ![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_1.png)![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_2.png)![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_3.png)
