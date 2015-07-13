@@ -1,5 +1,5 @@
 # Header View
-[ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Header--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2123)
 
 This is a view for NavigationView in android.support.design library
 
