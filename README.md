@@ -25,21 +25,21 @@ You MUST declare the view in your class, you can use two different layout, norma
 Normal Header View
 ```java
 HeaderView headerView = new HeaderView(this);
-        headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-        Picasso.with(HeaderActivity.this)
-                .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-                .into(headerView.background());
-        Picasso.with(HeaderActivity.this)
-                .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-                .into(headerView.avatar());
-        headerView.username("Raphael Bussa");
-        headerView.email("rapahelbussa@gmail.com");
-        headerView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
-            @Override
-            public void onClick() {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });
+headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
+Picasso.with(HeaderActivity.this)
+        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
+        .into(headerView.background());
+Picasso.with(HeaderActivity.this)
+        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
+        .into(headerView.avatar());
+headerView.username("Raphael Bussa");
+headerView.email("rapahelbussa@gmail.com");
+headerView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
+    @Override
+    public void onClick() {
+        drawerLayout.closeDrawer(GravityCompat.START);
+    }
+});
 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 navigationView.addHeaderView(headerView);
 ```
@@ -47,21 +47,21 @@ navigationView.addHeaderView(headerView);
 Compact Header View
 ```java
 HeaderCompactView headerCompactView = new HeaderCompactView(this, false); //true if you want to use this view below toolbar
-        headerCompactView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-        Picasso.with(HeaderActivity.this)
-                .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-                .into(headerCompactView.background());
-        Picasso.with(HeaderActivity.this)
-                .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-                .into(headerCompactView.avatar());
-        headerCompactView.username("Raphael Bussa");
-        headerCompactView.email("rapahelbussa@gmail.com");
-        headerCompactView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
-            @Override
-            public void onClick() {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });
+headerCompactView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
+Picasso.with(HeaderActivity.this)
+        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
+        .into(headerCompactView.background());
+Picasso.with(HeaderActivity.this)
+        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
+        .into(headerCompactView.avatar());
+headerCompactView.username("Raphael Bussa");
+headerCompactView.email("rapahelbussa@gmail.com");
+headerCompactView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
+    @Override
+    public void onClick() {
+        drawerLayout.closeDrawer(GravityCompat.START);
+    }
+});
 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 navigationView.addHeaderView(headerCompactView);
 ```
