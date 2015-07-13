@@ -1,4 +1,4 @@
-# Header-View
+# Header View
 [ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion)
 
 This is a view for NavigationView in android.support.design library
@@ -67,7 +67,7 @@ navigationView.addHeaderView(headerCompactView);
 ```
 
 ### App using Header View
-If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=WordPress Helper) and I will add it to the list below:
+If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
 - [Mister Gadget Beta](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 
 ###Developed By
