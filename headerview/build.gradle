@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
-
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.0 rc2"
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         minSdkVersion 8
@@ -25,4 +24,6 @@ android {
         publishVersion = '1.0.0'
     }
 
+}
+dependencies {
 }
