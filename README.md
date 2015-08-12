@@ -65,6 +65,8 @@ headerCompactView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickList
 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 navigationView.addHeaderView(headerCompactView);
 ```
+### Sample
+Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
 
 ### App using Header View
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
