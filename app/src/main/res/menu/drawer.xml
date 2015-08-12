@@ -27,57 +27,57 @@
     <group android:checkableBehavior="single">
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
         <item
             android:icon="@android:drawable/ic_menu_search"
-            android:title="Search" />
+            android:title="@string/nav_search" />
     </group>
 </menu>

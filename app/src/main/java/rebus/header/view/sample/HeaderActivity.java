@@ -67,10 +67,10 @@ public class HeaderActivity extends AppCompatActivity {
         HeaderView headerView = new HeaderView(HeaderActivity.this);
         headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
         Picasso.with(HeaderActivity.this)
-                .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
+                .load(getString(R.string.url_img_header))
                 .into(headerView.background());
         Picasso.with(HeaderActivity.this)
-                .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
+                .load(getString(R.string.url_img_profile))
                 .into(headerView.avatar());
         headerView.username("Raphael Bussa");
         headerView.email("rapahelbussa@gmail.com");

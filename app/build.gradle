@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile project(':headerview')
+    compile 'rebus:header-view:1.0.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:design:22.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
