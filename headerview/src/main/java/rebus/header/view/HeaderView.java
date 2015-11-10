@@ -91,7 +91,7 @@ public class HeaderView extends RelativeLayout {
         arrowImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                onArrowClickListener.onClick();
+                onArrowClickListener.onClick(v);
             }
         });
         RelativeLayout.LayoutParams arrowParamsCustom = (RelativeLayout.LayoutParams) arrowImage.getLayoutParams();
@@ -113,7 +113,7 @@ public class HeaderView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 if (onHeaderClickListener != null) {
-                    onHeaderClickListener.onClick();
+                    onHeaderClickListener.onClick(v);
                 }
             }
         });
@@ -121,7 +121,7 @@ public class HeaderView extends RelativeLayout {
             @Override
             public boolean onLongClick(View v) {
                 if (onHeaderLongClickListener != null) {
-                    onHeaderLongClickListener.onLongClick();
+                    onHeaderLongClickListener.onLongClick(v);
                     return true;
                 } else {
                     return false;
@@ -173,7 +173,7 @@ public class HeaderView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 if (onAvatarClickListener != null) {
-                    onAvatarClickListener.onClick();
+                    onAvatarClickListener.onClick(v);
                 }
             }
         });

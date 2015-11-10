@@ -31,6 +31,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -77,25 +78,25 @@ public class HeaderCompactBelowToolbarActivity extends AppCompatActivity {
         headerView.email(getString(R.string.email));
         headerView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(View view) {
                 drawerLayout.closeDrawer(GravityCompat.START);
             }
         });
         headerView.setOnAvatarClickListener(new HeaderInterface.OnAvatarClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(View view) {
                 Toast.makeText(HeaderCompactBelowToolbarActivity.this, getString(R.string.avatar_click), Toast.LENGTH_SHORT).show();
             }
         });
         headerView.setOnHeaderLongClickListener(new HeaderInterface.OnHeaderLongClickListener() {
             @Override
-            public void onLongClick() {
+            public void onLongClick(View view) {
                 Toast.makeText(HeaderCompactBelowToolbarActivity.this, getString(R.string.header_long_click), Toast.LENGTH_SHORT).show();
             }
         });
         headerView.setArrow(new HeaderInterface.OnArrowClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(View view) {
                 Toast.makeText(HeaderCompactBelowToolbarActivity.this, getString(R.string.arrow_click), Toast.LENGTH_SHORT).show();
             }
         });

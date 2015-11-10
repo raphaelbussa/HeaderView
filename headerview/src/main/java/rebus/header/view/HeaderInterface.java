@@ -24,22 +24,24 @@
 
 package rebus.header.view;
 
+import android.view.View;
+
 public class HeaderInterface {
 
     public interface OnHeaderClickListener {
-        void onClick();
+        void onClick(View view);
     }
 
     public interface OnHeaderLongClickListener {
-        void onLongClick();
+        void onLongClick(View view);
     }
 
     public interface OnAvatarClickListener {
-        void onClick();
+        void onClick(View view);
     }
 
     public interface OnArrowClickListener {
-        void onClick();
+        void onClick(View view);
     }
 
 }
