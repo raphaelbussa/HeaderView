@@ -34,4 +34,12 @@ public class HeaderInterface {
         void onLongClick();
     }
 
+    public interface OnAvatarClickListener {
+        void onClick();
+    }
+
+    public interface OnArrowClickListener {
+        void onClick();
+    }
+
 }

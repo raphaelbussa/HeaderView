@@ -37,6 +37,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,10 @@ public class HeaderCompactView extends RelativeLayout {
     private TextView userEmail;
     private HeaderInterface.OnHeaderClickListener onHeaderClickListener;
     private HeaderInterface.OnHeaderLongClickListener onHeaderLongClickListener;
+    private HeaderInterface.OnAvatarClickListener onAvatarClickListener;
     private boolean belowToolbar;
+    private View headerGradient;
+    private ImageView arrowImage;
 
     public HeaderCompactView(Context context, boolean belowToolbar) {
         super(context);
@@ -61,26 +65,8 @@ public class HeaderCompactView extends RelativeLayout {
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height(context));
         setLayoutParams(params);
         addView(headerBackground());
+        addView(headerGradient());
         addView(headerUserContainer());
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onHeaderClickListener != null) {
-                    onHeaderClickListener.onClick();
-                }
-            }
-        });
-        setOnLongClickListener(new OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (onHeaderLongClickListener != null) {
-                    onHeaderLongClickListener.onLongClick();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
     }
 
     public void setOnHeaderClickListener(HeaderInterface.OnHeaderClickListener onHeaderClickListener) {
@@ -91,12 +77,74 @@ public class HeaderCompactView extends RelativeLayout {
         this.onHeaderLongClickListener = onHeaderLongClickListener;
     }
 
+    public void setOnAvatarClickListener(HeaderInterface.OnAvatarClickListener onAvatarClickListener) {
+        this.onAvatarClickListener = onAvatarClickListener;
+    }
+
+    private View headerGradient() {
+        LayoutParams headerParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        headerGradient = new View(getContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            headerGradient.setBackgroundResource(outValue.resourceId);
+        }
+        headerGradient.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onHeaderClickListener != null) {
+                    onHeaderClickListener.onClick();
+                }
+            }
+        });
+        headerGradient.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (onHeaderLongClickListener != null) {
+                    onHeaderLongClickListener.onLongClick();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        headerGradient.setLayoutParams(headerParams);
+        return headerGradient;
+    }
+
     private ImageView headerBackground() {
         LayoutParams backgroundParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         headerBackground = new ImageView(getContext());
         headerBackground.setScaleType(ImageView.ScaleType.CENTER_CROP);
         headerBackground.setLayoutParams(backgroundParams);
         return headerBackground;
+    }
+
+    public void setArrow(final HeaderInterface.OnArrowClickListener onArrowClickListener) {
+        int marginTop = getResources().getDimensionPixelSize(R.dimen.margin);
+        int marginSize = getResources().getDimensionPixelSize(R.dimen.margin);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !belowToolbar) {
+            int resourceId = getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                marginTop = marginTop + getResources().getDimensionPixelSize(resourceId);
+            }
+        }
+        LayoutParams arrowParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        arrowImage = new ImageView(getContext());
+        arrowImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow));
+        arrowImage.setLayoutParams(arrowParams);
+        arrowImage.setPadding(marginSize, marginTop, marginSize, marginSize);
+        arrowImage.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onArrowClickListener.onClick();
+            }
+        });
+        RelativeLayout.LayoutParams arrowParamsCustom = (RelativeLayout.LayoutParams) arrowImage.getLayoutParams();
+        arrowParamsCustom.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        arrowParamsCustom.addRule(RelativeLayout.CENTER_VERTICAL);
+        arrowImage.setLayoutParams(arrowParamsCustom);
+        this.addView(arrowImage);
     }
 
     private LinearLayout headerUserInfo() {
@@ -129,17 +177,26 @@ public class HeaderCompactView extends RelativeLayout {
     private LinearLayout headerUserContainer() {
         int marginSize = getResources().getDimensionPixelSize(R.dimen.margin);
         int avatarSize = getResources().getDimensionPixelSize(R.dimen.avatar);
+        int textSize = getResources().getDimensionPixelSize(R.dimen.text);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setLayoutParams(params);
         linearLayout.setGravity(Gravity.BOTTOM);
-        linearLayout.setPadding(marginSize, marginSize, marginSize, marginSize);
+        linearLayout.setPadding(marginSize, marginSize, marginSize + textSize, marginSize);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams avatarParams = new LinearLayout.LayoutParams(avatarSize, avatarSize);
         avatarParams.setMargins(0, 0, marginSize, 0);
         avatar = new AvatarView(getContext());
         avatar.setLayoutParams(avatarParams);
         avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        avatar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onAvatarClickListener != null) {
+                    onAvatarClickListener.onClick();
+                }
+            }
+        });
         linearLayout.addView(avatar);
         linearLayout.addView(headerUserInfo());
         return linearLayout;
@@ -154,10 +211,12 @@ public class HeaderCompactView extends RelativeLayout {
     }
 
     public void username(String username) {
+        if (username == null) this.userName.setVisibility(GONE);
         this.userName.setText(username);
     }
 
     public void email(String email) {
+        if (email == null) this.userEmail.setVisibility(GONE);
         this.userEmail.setText(email);
     }
 

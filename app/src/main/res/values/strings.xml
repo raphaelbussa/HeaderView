@@ -29,17 +29,27 @@
     <string name="action_close">Close</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="header">Header Normal</string>
+    <string name="header_toolbar">Header Below Toolbar</string>
     <string name="header_compact">Header Compact</string>
     <string name="header_compact_toolbar">Header Compact Below Toolbar</string>
 
-    <string name="url_img_profile">https://pbs.twimg.com/profile_images/571933383686803456/qrhR5AV3.jpeg</string>
-    <string name="url_img_header">https://pbs.twimg.com/profile_banners/390983842/1431125992/1500x500</string>
+    <string name="url_img_profile">https://pbs.twimg.com/profile_images/640620394718830596/Xq7hliYH.jpg</string>
+    <string name="url_img_header">https://pbs.twimg.com/profile_banners/390983842/1444939333/1500x500</string>
 
     <string name="nav_search">Search</string>
 
-    <string name="info_message"><![CDATA[
-    Header View is a librery created by <b>Raphael Bussa</b><br>
-    <a href="https://github.com/rebus007">GitHub</a> <a href="https://twitter.com/rebus_007">Twitter</a> <a href="https://plus.google.com/+RaphaelBussa/posts">Google+</a> <a href="https://www.linkedin.com/in/rebus007">Linkedin</a><br><br>
-    Third party libraries used in this sample: <a href="http://square.github.io/picasso/">Picasso</a>
-    ]]></string>
+    <string name="info_message">
+        <![CDATA[
+            Header View is a library created by <b>Raphaël Bussa</b><br>
+            <a href="https://github.com/rebus007">GitHub</a> <a href="https://twitter.com/rebus_007">Twitter</a> <a href="https://plus.google.com/+RaphaelBussa/posts">Google+</a> <a href="https://www.linkedin.com/in/rebus007">Linkedin</a><br><br>
+            Third party libraries used in this sample: <a href="http://square.github.io/picasso/">Picasso</a>
+        ]]>
+    </string>
+
+    <string name="username">Raphaël Bussa</string>
+    <string name="email">raphaelbussa@gmail.com</string>
+
+    <string name="avatar_click">Avatar clicked!</string>
+    <string name="arrow_click">Arrow clicked!</string>
+    <string name="header_long_click">On Long Click Header</string>
 </resources>

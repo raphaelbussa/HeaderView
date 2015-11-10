@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(getString(R.string.app_name));
         setSupportActionBar(toolbar);
         Button header = (Button) findViewById(R.id.header);
+        Button headerToolbar = (Button) findViewById(R.id.header_toolbar);
         Button headerCompact = (Button) findViewById(R.id.header_compact);
         Button headerCompactToolbar = (Button) findViewById(R.id.header_compact_toolbar);
 
@@ -54,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HeaderActivity.class));
+            }
+        });
+
+        headerToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HeaderBelowToolbarActivity.class));
             }
         });
 

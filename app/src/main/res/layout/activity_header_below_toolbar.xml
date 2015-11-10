@@ -22,10 +22,11 @@
   ~ SOFTWARE.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -34,36 +35,29 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <Button
-        android:id="@+id/header"
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="25dp"
-        android:text="@string/header" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:fitsSystemWindows="true">
 
-    <Button
-        android:id="@+id/header_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="25dp"
-        android:text="@string/header_toolbar" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/header_compact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="25dp"
-        android:text="@string/header_compact" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
 
-    <Button
-        android:id="@+id/header_compact_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="25dp"
-        android:text="@string/header_compact_toolbar" />
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer" />
 
-</LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+
+</RelativeLayout>

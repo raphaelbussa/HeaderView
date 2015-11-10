@@ -35,10 +35,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import rebus.header.view.HeaderCompactView;
 import rebus.header.view.HeaderInterface;
 import rebus.header.view.HeaderView;
 
-public class HeaderActivity extends AppCompatActivity {
+public class HeaderBelowToolbarActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -48,13 +49,13 @@ public class HeaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_header);
+        setContentView(R.layout.activity_header_below_toolbar);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.header));
+        toolbar.setTitle(getString(R.string.header_toolbar));
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.addHeaderView(headerView());
-        actionBarDrawerToggle = new ActionBarDrawerToggle(HeaderActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(HeaderBelowToolbarActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -65,12 +66,12 @@ public class HeaderActivity extends AppCompatActivity {
     }
 
     private HeaderView headerView() {
-        HeaderView headerView = new HeaderView(HeaderActivity.this, false);
+        HeaderView headerView = new HeaderView(HeaderBelowToolbarActivity.this, true);
         headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-        Picasso.with(HeaderActivity.this)
+        Picasso.with(HeaderBelowToolbarActivity.this)
                 .load(getString(R.string.url_img_header))
                 .into(headerView.background());
-        Picasso.with(HeaderActivity.this)
+        Picasso.with(HeaderBelowToolbarActivity.this)
                 .load(getString(R.string.url_img_profile))
                 .into(headerView.avatar());
         headerView.username(getString(R.string.username));
@@ -84,13 +85,13 @@ public class HeaderActivity extends AppCompatActivity {
         headerView.setOnAvatarClickListener(new HeaderInterface.OnAvatarClickListener() {
             @Override
             public void onClick() {
-                Toast.makeText(HeaderActivity.this, getString(R.string.avatar_click), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HeaderBelowToolbarActivity.this, getString(R.string.avatar_click), Toast.LENGTH_SHORT).show();
             }
         });
-        headerView.setArrow(new HeaderInterface.OnArrowClickListener() {
+        headerView.setOnHeaderLongClickListener(new HeaderInterface.OnHeaderLongClickListener() {
             @Override
-            public void onClick() {
-                Toast.makeText(HeaderActivity.this, getString(R.string.arrow_click), Toast.LENGTH_SHORT).show();
+            public void onLongClick() {
+                Toast.makeText(HeaderBelowToolbarActivity.this, getString(R.string.header_long_click), Toast.LENGTH_SHORT).show();
             }
         });
         return headerView;

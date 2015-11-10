@@ -47,7 +47,10 @@
         <activity
             android:name=".HeaderCompactActivity"
             android:theme="@style/AppTheme.Drawer" />
-        <activity android:name=".HeaderCompactBelowToolbarActivity" />
+        <activity
+            android:name=".HeaderCompactBelowToolbarActivity" />
+        <activity
+            android:name=".HeaderBelowToolbarActivity" />
     </application>
 
 </manifest>
