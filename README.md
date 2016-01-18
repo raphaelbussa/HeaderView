@@ -1,4 +1,6 @@
 # Header View
+
+[![Join the chat at https://gitter.im/rebus007/HeaderView](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rebus007/HeaderView?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Header--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2123)
 
 This is a view for NavigationView in android.support.design library
