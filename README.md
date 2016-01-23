@@ -18,7 +18,7 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:1.0.0'
+    compile 'rebus:header-view:1.1.1'
 }
 ```
 ### How to use
@@ -26,7 +26,7 @@ You MUST declare the view in your class, you can use two different layout, norma
 
 Normal Header View
 ```java
-HeaderView headerView = new HeaderView(this);
+HeaderView headerView = new HeaderView(this, false); //true if you want to use this view below toolbar
 headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
 Picasso.with(HeaderActivity.this)
         .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
