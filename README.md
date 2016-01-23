@@ -5,7 +5,7 @@
 
 This is a view for NavigationView in android.support.design library
 
-![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_1.png)![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_2.png)![Screen](https://raw.githubusercontent.com/rebus007/Header-View/master/img/screen/screen_3.png)
+![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/header.png)
 
 ### Import
 At the moment the library is in my personal maven repo
