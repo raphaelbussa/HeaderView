@@ -72,7 +72,8 @@ Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master
 
 ### App using Header View
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
-- [Mister Gadget Beta](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
+- [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
+- [Git Chat](https://github.com/rebus007/Git-Chat)
 
 ###Developed By
 Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
