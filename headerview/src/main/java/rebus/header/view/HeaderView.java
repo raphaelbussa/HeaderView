@@ -24,6 +24,7 @@
 
 package rebus.header.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -46,11 +47,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+@SuppressLint("ViewConstructor")
 public class HeaderView extends RelativeLayout {
 
     private boolean belowToolbar;
     private ImageView headerBackground;
-    private AvatarView avatar;
+    private BezelImageView avatar;
     private TextView userName;
     private TextView userEmail;
     private HeaderInterface.OnHeaderClickListener onHeaderClickListener;
@@ -166,7 +168,7 @@ public class HeaderView extends RelativeLayout {
         userEmail.setLayoutParams(textParams);
         LinearLayout.LayoutParams avatarParams = new LinearLayout.LayoutParams(avatarSize, avatarSize);
         avatarParams.setMargins(0, 0, 0, marginSize);
-        avatar = new AvatarView(getContext());
+        avatar = new BezelImageView(getContext());
         avatar.setLayoutParams(avatarParams);
         avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
         avatar.setOnClickListener(new OnClickListener() {
@@ -187,7 +189,7 @@ public class HeaderView extends RelativeLayout {
         return headerBackground;
     }
 
-    public AvatarView avatar() {
+    public BezelImageView avatar() {
         return avatar;
     }
 

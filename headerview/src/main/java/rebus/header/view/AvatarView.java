@@ -36,6 +36,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+@Deprecated
 public class AvatarView extends ImageView{
 
     public AvatarView(Context context) {
