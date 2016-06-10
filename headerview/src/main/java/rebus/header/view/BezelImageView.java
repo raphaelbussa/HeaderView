@@ -72,6 +72,8 @@ public class BezelImageView extends ImageView {
 
     private boolean isPressed = false;
     private boolean isSelected;
+    private ColorMatrixColorFilter mTempDesaturateColorFilter;
+    private ColorFilter mTempSelectorFilter;
 
     public BezelImageView(Context context) {
         this(context, null);
@@ -125,23 +127,6 @@ public class BezelImageView extends ImageView {
             if (mDrawCircularShadow) {
                 setOutlineProvider(new CustomOutline(w, h));
             }
-        }
-    }
-
-    @TargetApi(21)
-    private class CustomOutline extends ViewOutlineProvider {
-
-        int width;
-        int height;
-
-        CustomOutline(int width, int height) {
-            this.width = width;
-            this.height = height;
-        }
-
-        @Override
-        public void getOutline(View view, Outline outline) {
-            outline.setOval(0, 0, width, height);
         }
     }
 
@@ -231,7 +216,6 @@ public class BezelImageView extends ImageView {
         isPressed = isPressed();
     }
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         // Check for clickable state and do nothing if disabled
@@ -280,7 +264,6 @@ public class BezelImageView extends ImageView {
         return who == mMaskDrawable || super.verifyDrawable(who);
     }
 
-
     /**
      * Sets the color of the selector to be draw over the
      * CircularImageView. Be sure to provide some opacity.
@@ -292,7 +275,6 @@ public class BezelImageView extends ImageView {
         this.mSelectorFilter = new PorterDuffColorFilter(Color.argb(mSelectorAlpha, Color.red(mSelectorColor), Color.green(mSelectorColor), Color.blue(mSelectorColor)), PorterDuff.Mode.SRC_ATOP);
         this.invalidate();
     }
-
 
     @Override
     public void setImageDrawable(Drawable drawable) {
@@ -309,9 +291,6 @@ public class BezelImageView extends ImageView {
         super.setImageBitmap(bm);
     }
 
-    private ColorMatrixColorFilter mTempDesaturateColorFilter;
-    private ColorFilter mTempSelectorFilter;
-
     public void disableTouchFeedback(boolean disable) {
         if (disable) {
             mTempDesaturateColorFilter = this.mDesaturateColorFilter;
@@ -325,6 +304,23 @@ public class BezelImageView extends ImageView {
             if (mTempSelectorFilter != null) {
                 this.mSelectorFilter = mTempSelectorFilter;
             }
+        }
+    }
+
+    @TargetApi(21)
+    private class CustomOutline extends ViewOutlineProvider {
+
+        int width;
+        int height;
+
+        CustomOutline(int width, int height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        @Override
+        public void getOutline(View view, Outline outline) {
+            outline.setOval(0, 0, width, height);
         }
     }
 }

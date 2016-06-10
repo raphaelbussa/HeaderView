@@ -26,17 +26,10 @@ package rebus.header.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -201,6 +194,34 @@ public class HeaderView extends RelativeLayout {
     public void email(String email) {
         if (email == null) this.userEmail.setVisibility(GONE);
         this.userEmail.setText(email);
+    }
+
+    public void usernameTypeface(Typeface typeface) {
+        if (typeface == null) return;
+        this.userName.setTypeface(typeface);
+    }
+
+    public void emailTypeface(Typeface typeface) {
+        if (typeface == null) return;
+        this.userEmail.setTypeface(typeface);
+    }
+
+    public void username(Spannable username) {
+        if (username == null) this.userName.setVisibility(GONE);
+        this.userName.setText(username);
+    }
+
+    public void email(Spannable email) {
+        if (email == null) this.userEmail.setVisibility(GONE);
+        this.userEmail.setText(email);
+    }
+
+    public TextView getEmail() {
+        return userEmail;
+    }
+
+    public TextView getUsername() {
+        return userName;
     }
 
     private int height(Context context) {
