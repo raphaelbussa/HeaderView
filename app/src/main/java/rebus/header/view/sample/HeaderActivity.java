@@ -67,10 +67,11 @@ public class HeaderActivity extends AppCompatActivity {
 
     private HeaderView headerView() {
         HeaderView headerView = new HeaderView(HeaderActivity.this, false);
-        headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-        Picasso.with(HeaderActivity.this)
+        headerView.background().setBackgroundColor(getResources().getColor(R.color.accent));
+        headerView.theme(true);
+        /*Picasso.with(HeaderActivity.this)
                 .load(getString(R.string.url_img_header))
-                .into(headerView.background());
+                .into(headerView.background());*/
         Picasso.with(HeaderActivity.this)
                 .load(getString(R.string.url_img_profile))
                 .into(headerView.avatar());

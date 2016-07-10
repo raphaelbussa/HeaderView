@@ -68,10 +68,11 @@ public class HeaderCompactActivity extends AppCompatActivity {
 
     private HeaderCompactView headerView() {
         HeaderCompactView headerView = new HeaderCompactView(HeaderCompactActivity.this, false);
-        headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-        Picasso.with(HeaderCompactActivity.this)
-                .load(getString(R.string.url_img_header))
-                .into(headerView.background());
+        headerView.theme(true);
+        headerView.background().setBackgroundColor(getResources().getColor(R.color.accent));
+//        Picasso.with(HeaderCompactActivity.this)
+//                .load(getString(R.string.url_img_header))
+//                .into(headerView.background());
         Picasso.with(HeaderCompactActivity.this)
                 .load(getString(R.string.url_img_profile))
                 .into(headerView.avatar());

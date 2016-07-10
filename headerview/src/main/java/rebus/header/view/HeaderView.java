@@ -26,7 +26,6 @@ package rebus.header.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Spannable;
@@ -54,6 +53,9 @@ public class HeaderView extends RelativeLayout {
     private View headerGradient;
     private ImageView arrowImage;
 
+    private int arrow = R.drawable.ic_arrow;
+    private int color = R.color.text_color;
+
     public HeaderView(Context context, boolean belowToolbar) {
         super(context);
         this.belowToolbar = belowToolbar;
@@ -62,6 +64,18 @@ public class HeaderView extends RelativeLayout {
         addView(headerBackground());
         addView(headerGradient());
         addView(headerUserContainer());
+    }
+
+    public void theme(boolean dark) {
+        if (dark) {
+            arrow = R.drawable.ic_arrow_dark;
+            color = R.color.text_color_dark;
+        } else {
+            arrow = R.drawable.ic_arrow;
+            color = R.color.text_color;
+        }
+        userEmail.setTextColor(getContext().getResources().getColor(color));
+        userName.setTextColor(getContext().getResources().getColor(color));
     }
 
     public void setOnHeaderClickListener(HeaderInterface.OnHeaderClickListener onHeaderClickListener) {
@@ -80,7 +94,7 @@ public class HeaderView extends RelativeLayout {
         int marginSize = getResources().getDimensionPixelSize(R.dimen.margin);
         LayoutParams arrowParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         arrowImage = new ImageView(getContext());
-        arrowImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow));
+        arrowImage.setImageDrawable(getResources().getDrawable(arrow));
         arrowImage.setLayoutParams(arrowParams);
         arrowImage.setPadding(marginSize, marginSize, marginSize, marginSize);
         arrowImage.setOnClickListener(new OnClickListener() {
@@ -147,14 +161,14 @@ public class HeaderView extends RelativeLayout {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, textSize);
         userName = new TextView(getContext());
-        userName.setTextColor(Color.WHITE);
+        userName.setTextColor(getContext().getResources().getColor(color));
         userName.setTypeface(Typeface.DEFAULT_BOLD);
         userName.setGravity(Gravity.CENTER_VERTICAL);
         userName.setSingleLine();
         userName.setEllipsize(TextUtils.TruncateAt.END);
         userName.setLayoutParams(textParams);
         userEmail = new TextView(getContext());
-        userEmail.setTextColor(Color.WHITE);
+        userEmail.setTextColor(getContext().getResources().getColor(color));
         userEmail.setGravity(Gravity.CENTER_VERTICAL);
         userEmail.setSingleLine();
         userEmail.setEllipsize(TextUtils.TruncateAt.END);
