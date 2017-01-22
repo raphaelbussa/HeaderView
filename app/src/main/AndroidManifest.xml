@@ -2,7 +2,7 @@
 <!--
   ~ The MIT License (MIT)
   ~
-  ~ Copyright (c) 2015 Raphaël Bussa
+  ~ Copyright (c) 2017 Raphaël Bussa
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -26,31 +26,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rebus.header.view.sample">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:name=".CustomApplication"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Drawer">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".HeaderActivity"
-            android:theme="@style/AppTheme.Drawer" />
-        <activity
-            android:name=".HeaderCompactActivity"
-            android:theme="@style/AppTheme.Drawer" />
-        <activity
-            android:name=".HeaderCompactBelowToolbarActivity" />
-        <activity
-            android:name=".HeaderBelowToolbarActivity" />
     </application>
 
 </manifest>

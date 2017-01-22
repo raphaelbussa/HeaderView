@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="BezelImageView">
-        <item name="biv_maskDrawable">@drawable/circle_mask</item>
-        <item name="biv_drawCircularShadow">true</item>
-    </style>
-
-</resources>
