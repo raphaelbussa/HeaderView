@@ -63,11 +63,14 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
+    private static final String TAG = HeaderView.class.getName();
+    private static final String PROFILE_LIST = "PROFILE_LIST";
+
     public static final int STYLE_NORMAL = 1;
     public static final int STYLE_COMPACT = 2;
     public static final int THEME_LIGHT = 1;
     public static final int THEME_DARK = 2;
-    private static final String TAG = HeaderView.class.getName();
+
     private int statusBarHeight;
 
     private CircleImageView avatar;
@@ -92,7 +95,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     private int hvBackgroundColor;
     @ColorInt
     private int hvHighlightColor;
-    private boolean hvBelowToolbar;
+    private boolean hvAddStatusBarHeight;
     private boolean hvShowGradient;
     private boolean hvShowAddButton;
     private boolean hvShowArrow;
@@ -137,10 +140,16 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         setDefaultValues();
     }
 
+    /**
+     * @param style set style of HeaderView: STYLE_NORMAL or STYLE_COMPACT
+     */
     public void setStyle(@Style int style) {
         hvStyle = style;
     }
 
+    /**
+     * @param theme set theme of HeaderView: THEME_LIGHT or THEME_DARK
+     */
     public void setTheme(@Theme int theme) {
         hvTheme = theme;
         if (hvTheme == THEME_LIGHT) {
@@ -154,6 +163,9 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         arrow.setColorFilter(hvTextColor);
     }
 
+    /**
+     * @param headerCallback set callback for HeaderView actions, onAdd (from profile chooser), onItem (from profile chooser) and onSelect when a profile is clicked
+     */
     public void setCallback(HeaderCallback headerCallback) {
         this.headerCallback = headerCallback;
     }
@@ -163,6 +175,9 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         populateAvatar();
     }
 
+    /**
+     * @param profiles add a List of profiles
+     */
     public void addProfile(List<Profile> profiles) {
         for (Profile profile : profiles) {
             profileSparseArray.put(profile.getId(), profile);
@@ -171,6 +186,20 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         Log.d(TAG, profileSparseArray.toString());
     }
 
+    /**
+     * @param profiles add a ArrayList of profiles
+     */
+    public void addProfile(ArrayList<Profile> profiles) {
+        for (Profile profile : profiles) {
+            profileSparseArray.put(profile.getId(), profile);
+        }
+        populateAvatar();
+        Log.d(TAG, profileSparseArray.toString());
+    }
+
+    /**
+     * @param profiles add Profiles
+     */
     public void addProfile(Profile... profiles) {
         for (Profile profile : profiles) {
             profileSparseArray.put(profile.getId(), profile);
@@ -179,16 +208,33 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         Log.d(TAG, profileSparseArray.toString());
     }
 
+    /**
+     * @param item add profile chooser bottom items
+     */
     public void addDialogItem(Item... item) {
         itemArrayList.clear();
         Collections.addAll(itemArrayList, item);
     }
 
+    /**
+     * @param items add a List of items for profile chooser
+     */
     public void addDialogItem(List<Item> items) {
         itemArrayList.clear();
         itemArrayList.addAll(items);
     }
 
+    /**
+     * @param items add a ArrayList of items for profile chooser
+     */
+    public void addDialogItem(ArrayList<Item> items) {
+        itemArrayList.clear();
+        itemArrayList.addAll(items);
+    }
+
+    /**
+     * @param id remove profile from id
+     */
     public void removeProfile(int id) {
         for (int i = 0; i < profileSparseArray.size(); i++) {
             Profile profile = profileSparseArray.valueAt(i);
@@ -200,10 +246,16 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         }
     }
 
+    /**
+     * @return get active id profile
+     */
     public int getProfileActive() {
         return profileSparseArray.valueAt(0).getId();
     }
 
+    /**
+     * @param id set active profile from id
+     */
     public void setProfileActive(int id) {
         for (int i = 0; i < profileSparseArray.size(); i++) {
             Profile profile = profileSparseArray.valueAt(i);
@@ -214,11 +266,17 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         }
     }
 
+    /**
+     * @param showArrow set if arrow is visible
+     */
     public void setShowArrow(boolean showArrow) {
         hvShowArrow = showArrow;
         addArrow();
     }
 
+    /**
+     * @param showGradient set if background gradient is visible
+     */
     public void setShowGradient(boolean showGradient) {
         hvShowGradient = showGradient;
         addGradient();
@@ -231,42 +289,86 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         hvAddIconDrawable = addIconDrawable;
     }
 
+    /**
+     * @param fragmentManager set FragmentManager for use a DialogFragment for profile chooser and prevent dismiss in activity rotation
+     */
     public void setFragmentManager(FragmentManager fragmentManager) {
         hvFragmentManager = fragmentManager;
     }
 
+    /**
+     * @param showAddButton show button in the upper right in profile chooser
+     */
     public void setShowAddButton(boolean showAddButton) {
         hvShowAddButton = showAddButton;
     }
 
+    /**
+     * @param color set HeaderView background color as color int
+     */
     public void setBackgroundColor(@ColorInt int color) {
         background.setBackgroundColor(color);
     }
 
+    /**
+     * @param color set HeaderView background color as color res
+     */
     public void setBackgroundColorRes(@ColorRes int color) {
         background.setBackgroundColor(Utils.getColor(getContext(), color));
     }
 
+    /**
+     * @param onClickListener set onClickListener for avatar in HeaderView
+     */
     public void setOnAvatarClickListener(View.OnClickListener onClickListener) {
         avatar.setOnClickListener(onClickListener);
     }
 
+    /**
+     * @param onLongClickListener set onLongClickListener for avatar in HeaderView
+     */
     public void setOnLongAvatarClickListener(View.OnLongClickListener onLongClickListener) {
         avatar.setOnLongClickListener(onLongClickListener);
     }
 
+    /**
+     * @param onClickListener set onClickListener for background in HeaderView
+     */
     public void setOnHeaderClickListener(OnClickListener onClickListener) {
         selector.setOnClickListener(onClickListener);
     }
 
+    /**
+     * @param onLongClickListener set onLongClickListener for background in HeaderView
+     */
     public void setOnLongHeaderClickListener(View.OnLongClickListener onLongClickListener) {
         selector.setOnLongClickListener(onLongClickListener);
     }
 
-    public void setHighlightColor(int highlightColor) {
+    /**
+     * @param onClickListener replace default on onClickListener for arrow and replace default action (open profile chooser dialog)
+     */
+    public void setOnArrowClickListener(OnClickListener onClickListener) {
+        arrow.setOnClickListener(onClickListener);
+    }
+
+    /**
+     * @param onLongClickListener set onLongClickListener for arrow in HeaderView
+     */
+    public void setOnLongArrowClickListener(View.OnLongClickListener onLongClickListener) {
+        arrow.setOnLongClickListener(onLongClickListener);
+    }
+
+    /**
+     * @param highlightColor set color for circle border in avatar view in profile chooser
+     */
+    public void setHighlightColor(@ColorInt int highlightColor) {
         hvHighlightColor = highlightColor;
     }
 
+    /**
+     * @param dialogTitle set profile chooser dialog title
+     */
     public void setDialogTitle(String dialogTitle) {
         hvDialogTitle = dialogTitle;
     }
@@ -388,7 +490,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
             hvBackgroundColor = Color.TRANSPARENT;
             hvHighlightColor = Color.BLACK;
-            hvBelowToolbar = false;
+            hvAddStatusBarHeight = true;
             hvStyle = STYLE_NORMAL;
             hvTheme = THEME_LIGHT;
             hvShowGradient = true;
@@ -406,7 +508,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
             hvBackgroundColor = typedArray.getColor(R.styleable.HeaderView_hv_background_color, Color.TRANSPARENT);
             hvHighlightColor = typedArray.getColor(R.styleable.HeaderView_hv_highlight_color, Color.BLACK);
-            hvBelowToolbar = typedArray.getBoolean(R.styleable.HeaderView_hv_below_toolbar, false);
+            hvAddStatusBarHeight = typedArray.getBoolean(R.styleable.HeaderView_hv_add_status_bar_height, true);
             hvStyle = typedArray.getInt(R.styleable.HeaderView_hv_style, STYLE_NORMAL);
             hvTheme = typedArray.getInt(R.styleable.HeaderView_hv_theme, THEME_LIGHT);
             hvShowGradient = typedArray.getBoolean(R.styleable.HeaderView_hv_show_gradient, true);
@@ -503,7 +605,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
                 if (hvFragmentManager != null) {
                     ProfileChooserFragment profileChooserFragment = ProfileChooserFragment.newInstance(profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
                     profileChooserFragment.setCallback(HeaderView.this);
-                    profileChooserFragment.show(hvFragmentManager, "ProfileChooserFragment");
+                    profileChooserFragment.show(hvFragmentManager, ProfileChooserFragment.FRAGMENT_TAG);
                 } else {
                     ProfileChooser profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
                     profileChooser.setCallback(HeaderView.this);
@@ -591,7 +693,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     }
 
     private int getDimensionFix(int dimen) {
-        if (hvBelowToolbar) {
+        if (!hvAddStatusBarHeight) {
             return dimen;
         } else {
             return dimen + statusBarHeight;
@@ -600,14 +702,14 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     private int getHeaderHeight(int heightMeasureSpec) {
         if (hvStyle == STYLE_NORMAL) {
-            if (hvBelowToolbar) {
+            if (!hvAddStatusBarHeight) {
                 return getResources().getDimensionPixelSize(R.dimen.hv_normal);
             } else {
                 return getResources().getDimensionPixelSize(R.dimen.hv_normal) + statusBarHeight;
             }
         }
         if (hvStyle == STYLE_COMPACT) {
-            if (hvBelowToolbar) {
+            if (!hvAddStatusBarHeight) {
                 return getResources().getDimensionPixelSize(R.dimen.hv_compact);
             } else {
                 return getResources().getDimensionPixelSize(R.dimen.hv_compact) + statusBarHeight;
@@ -622,7 +724,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
         //STORE CUSTOM VALUES
-        bundle.putSparseParcelableArray("PROFILE_LIST", profileSparseArray);
+        bundle.putSparseParcelableArray(PROFILE_LIST, profileSparseArray);
         return bundle;
     }
 
@@ -633,11 +735,11 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             Bundle bundle = (Bundle) state;
             state = bundle.getParcelable("superState");
             //RESTORE CUSTOM VALUES
-            profileSparseArray = bundle.getSparseParcelableArray("PROFILE_LIST");
+            profileSparseArray = bundle.getSparseParcelableArray(PROFILE_LIST);
             populateAvatar();
         }
         if (hvFragmentManager != null) {
-            ProfileChooserFragment profileChooserFragment = (ProfileChooserFragment) hvFragmentManager.findFragmentByTag("ProfileChooserFragment");
+            ProfileChooserFragment profileChooserFragment = (ProfileChooserFragment) hvFragmentManager.findFragmentByTag(ProfileChooserFragment.FRAGMENT_TAG);
             if (profileChooserFragment != null) {
                 profileChooserFragment.setCallback(HeaderView.this);
             }

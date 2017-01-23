@@ -161,72 +161,118 @@ public class Profile implements Parcelable {
         public Builder() {
         }
 
+        /**
+         * @param id set id of profile for match onClick result
+         * @return current builder instance
+         */
         public Builder setId(@IdValue int id) {
             this.id = id;
             return this;
         }
 
-        public Builder setAvatar(Uri avatar) {
+        /**
+         * @param avatar set avatar Uri (for use this function you must implement ImageLoader)
+         * @return current builder instance
+         */
+        public Builder setAvatar(@NonNull Uri avatar) {
             this.avatarUri = avatar;
             this.avatarDrawable = null;
             return this;
         }
 
+        /**
+         * @param avatar set avatar url as String (for use this function you must implement ImageLoader)
+         * @return current builder instance
+         */
         public Builder setAvatar(@NonNull String avatar) {
             this.avatarUri = Uri.parse(avatar);
             this.avatarDrawable = null;
             return this;
         }
 
+        /**
+         * @param avatar set avatar drawable
+         * @return current builder instance
+         */
         public Builder setAvatar(Drawable avatar) {
             this.avatarDrawable = avatar;
             this.avatarUri = null;
             return this;
         }
 
-        public Builder setBackground(Uri background) {
+        /**
+         * @param background set background Uri (for use this function you must implement ImageLoader)
+         * @return current builder instance
+         */
+        public Builder setBackground(@NonNull Uri background) {
             this.backgroundUri = background;
             this.backgroundDrawable = null;
             return this;
         }
 
+        /**
+         * @param background set background url as String (for use this function you must implement ImageLoader)
+         * @return current builder instance
+         */
         public Builder setBackground(@NonNull String background) {
             this.backgroundUri = Uri.parse(background);
             this.backgroundDrawable = null;
             return this;
         }
 
+        /**
+         * @param background set background drawable
+         * @return current builder instance
+         */
         public Builder setBackground(Drawable background) {
             this.backgroundDrawable = background;
             this.backgroundUri = null;
             return this;
         }
 
+        /**
+         * @param username set profile username
+         * @return current builder instance
+         */
         public Builder setUsername(Spanned username) {
             this.username = username;
             return this;
         }
 
+        /**
+         * @param email set profile email
+         * @return current builder instance
+         */
         public Builder setEmail(Spanned email) {
             this.email = email;
             return this;
         }
 
+        /**
+         * @param username set profile username
+         * @return current builder instance
+         */
         public Builder setUsername(String username) {
             this.username = Utils.fromHtml(username);
             return this;
         }
 
+        /**
+         * @param email set profile email
+         * @return current builder instance
+         */
         public Builder setEmail(String email) {
             this.email = Utils.fromHtml(email);
             return this;
         }
 
+        /**
+         * @return build Profile and return it
+         */
         public Profile build() {
             return new Profile(id, avatarUri, avatarDrawable, backgroundUri, backgroundDrawable, username, email);
         }
 
     }
-
 
 }

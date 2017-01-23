@@ -52,7 +52,7 @@ public class Item implements Parcelable {
         this.title = title;
     }
 
-    protected Item(Parcel in) {
+    private Item(Parcel in) {
         id = in.readInt();
         title = in.readString();
     }
@@ -84,21 +84,31 @@ public class Item implements Parcelable {
         public Builder() {
         }
 
+        /**
+         * @param id set id of item for match onClick result
+         * @return current builder instance
+         */
         public Builder setId(int id) {
             this.id = id;
             return this;
         }
 
+        /**
+         * @param title set title of item
+         * @return current builder instance
+         */
         public Builder setTitle(String title) {
             this.title = title;
             return this;
         }
 
+        /**
+         * @return build Item and return it
+         */
         public Item build() {
             return new Item(id, title);
         }
 
     }
-
 
 }

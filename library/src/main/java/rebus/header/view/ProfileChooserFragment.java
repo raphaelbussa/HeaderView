@@ -45,6 +45,8 @@ import java.util.List;
 
 public class ProfileChooserFragment extends DialogFragment {
 
+    public static final String FRAGMENT_TAG = "HV_PROFILE_CHOOSER_FRAGMENT";
+
     private LinearLayout linearLayout;
     private LinearLayout linearLayout1;
     private TextView title;

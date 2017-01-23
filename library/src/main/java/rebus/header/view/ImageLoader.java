@@ -46,12 +46,15 @@ public class ImageLoader {
     private static ImageLoader instance;
     private ImageLoaderInterface imageLoaderInterface;
 
-    public static ImageLoader init(ImageLoaderInterface imageLoaderInterface) {
+
+    /**
+     * @param imageLoaderInterface set ImageLoaderInterface for image loading from Uri
+     */
+    public static void init(ImageLoaderInterface imageLoaderInterface) {
         if (instance == null) {
             instance = new ImageLoader();
         }
         instance.setImageLoaderInterface(imageLoaderInterface);
-        return instance;
     }
 
     static void loadImage(Uri url, ImageView imageView, @Type int type) {
@@ -66,6 +69,11 @@ public class ImageLoader {
     }
 
     public interface ImageLoaderInterface {
+        /**
+         * @param url uri of image
+         * @param imageView reference of ImageView
+         * @param type type of image to load AVATAR or HEADER
+         */
         void loadImage(Uri url, ImageView imageView, @Type int type);
     }
 

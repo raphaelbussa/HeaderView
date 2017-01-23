@@ -33,6 +33,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import rebus.header.view.HeaderCallback;
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         headerView.setDialogTitle("Choose account");
         //headerView.setShowArrow(false);
         headerView.setFragmentManager(getFragmentManager());
+
         headerView.setCallback(new HeaderCallback() {
 
             @Override

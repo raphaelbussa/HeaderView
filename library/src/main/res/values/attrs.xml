@@ -31,7 +31,7 @@
         <attr name="hv_profile_avatar" format="reference" />
         <attr name="hv_profile_background" format="reference" />
         <attr name="hv_background_color" format="color" />
-        <attr name="hv_below_toolbar" format="boolean" />
+        <attr name="hv_add_status_bar_height" format="boolean" />
         <attr name="hv_show_gradient" format="boolean" />
         <attr name="hv_show_arrow" format="boolean" />
         <attr name="hv_show_add_button" format="boolean" />

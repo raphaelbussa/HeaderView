@@ -26,7 +26,7 @@
 <rebus.header.view.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header_view"
-    app:hv_below_toolbar="false"
+    app:hv_add_status_bar_height="true"
     app:hv_style="normal"
     app:hv_theme="light"
     app:hv_highlight_color="@color/colorAccent"
