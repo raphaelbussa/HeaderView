@@ -3,9 +3,9 @@
 [![Join the chat at https://gitter.im/rebus007/HeaderView](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rebus007/HeaderView?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Header--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2123)
 
-This is a view for NavigationView in android.support.design library
+![Logo](https://raw.githubusercontent.com/rebus007/PermissionUtils/master/img/web_hi_res_512.png)
 
-![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/header.png)
+This is a view for NavigationView in android.support.design library
 
 ### Import
 At the moment the library is in my personal maven repo
@@ -18,55 +18,12 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:1.1.5'
+    compile 'rebus:header-view:2.0.0-BETA-3'
 }
 ```
 ### How to use
-You MUST declare the view in your class, you can use two different layout, normal or compact
+//TODO
 
-Normal Header View
-```java
-HeaderView headerView = new HeaderView(this, false); //true if you want to use this view below toolbar
-headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-Picasso.with(HeaderActivity.this)
-        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-        .into(headerView.background());
-Picasso.with(HeaderActivity.this)
-        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-        .into(headerView.avatar());
-headerView.username("Raphael Bussa");
-headerView.email("rapahelbussa@gmail.com");
-headerView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
-    @Override
-    public void onClick() {
-        drawerLayout.closeDrawer(GravityCompat.START);
-    }
-});
-NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-navigationView.addHeaderView(headerView);
-```
-
-Compact Header View
-```java
-HeaderCompactView headerCompactView = new HeaderCompactView(this, false); //true if you want to use this view below toolbar
-headerCompactView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-Picasso.with(HeaderActivity.this)
-        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-        .into(headerCompactView.background());
-Picasso.with(HeaderActivity.this)
-        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-        .into(headerCompactView.avatar());
-headerCompactView.username("Raphael Bussa");
-headerCompactView.email("rapahelbussa@gmail.com");
-headerCompactView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
-    @Override
-    public void onClick() {
-        drawerLayout.closeDrawer(GravityCompat.START);
-    }
-});
-NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-navigationView.addHeaderView(headerCompactView);
-```
 ### Sample
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
 
@@ -74,6 +31,8 @@ Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
 - [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 - [Git Chat](https://github.com/rebus007/Git-Chat)
+- [Romanews.eu](https://play.google.com/store/apps/details?id=it.daigan.romanews)
+- [Mob@rt](https://play.google.com/store/apps/details?id=it.artigiancassa.mobile.android.mobart)
 
 ###Developed By
 Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
@@ -84,7 +43,7 @@ Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015 Raphael Bussa <raphaelbussa@gmail.com>
+Copyright (c) 2017 Raphaël Bussa <raphaelbussa@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
