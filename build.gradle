@@ -30,7 +30,7 @@ buildscript {
                 buildTools: "25.0.2",
                 minSdk    : 11,
                 targetSdk : 25,
-                version   : "2.0.0-BETA-2",
+                version   : "2.0.0-BETA-3",
                 supportLib: "25.1.0"
         ]
     }

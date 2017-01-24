@@ -24,6 +24,7 @@
 
 package rebus.header.view;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -102,6 +103,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     @DrawableRes
     private int hvAddIconDrawable;
     private String hvDialogTitle;
+    private boolean hvIsRTL;
 
     private SparseArray<Profile> profileSparseArray = new SparseArray<>();
     private ArrayList<Item> itemArrayList = new ArrayList<>();
@@ -535,6 +537,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     }
 
     private void setupResources() {
+        hvIsRTL = getResources().getBoolean(R.bool.is_right_to_left);
         statusBarHeight = Utils.getStatusBarHeight(getContext());
         hvAvatarDimen = getResources().getDimensionPixelSize(R.dimen.hv_avatar);
         hvAvatarMiniDimen = getResources().getDimensionPixelSize(R.dimen.hv_avatar_mini);
@@ -576,20 +579,22 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         addView(avatar, 3, layoutParams);
     }
 
+    @SuppressLint("RtlHardcoded")
     private void addUsername() {
         username = new TextView(getContext());
         username.setTextColor(hvTextColor);
         username.setTypeface(Typeface.DEFAULT_BOLD);
-        username.setGravity(Gravity.CENTER_VERTICAL);
+        username.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
         username.setMaxLines(1);
         username.setEllipsize(TextUtils.TruncateAt.END);
         addView(username, 4);
     }
 
+    @SuppressLint("RtlHardcoded")
     private void addEmail() {
         email = new TextView(getContext());
         email.setTextColor(hvTextColor);
-        email.setGravity(Gravity.CENTER_VERTICAL);
+        email.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
         email.setMaxLines(1);
         email.setEllipsize(TextUtils.TruncateAt.END);
         addView(email, 5);
@@ -636,53 +641,99 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         Log.d(TAG, "onLayout changed [" + changed + "]");
+        Log.d(TAG, "is_right_to_left [" + getResources().getBoolean(R.bool.is_right_to_left) + "]");
         if (!changed) return;
         background.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
         if (hvShowGradient) {
             gradient.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         selector.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        avatar.layout(hvMarginDimen,
-                getDimensionFix(hvMarginDimen),
-                hvMarginDimen + hvAvatarDimen,
-                getDimensionFix(hvAvatarDimen + hvMarginDimen));
-        if (hvStyle == STYLE_NORMAL) {
-            avatar2.layout(getMeasuredWidth() - hvMarginDimen - hvAvatarMiniDimen,
+        if (hvIsRTL) {
+            avatar.layout(getMeasuredWidth() - hvMarginDimen - hvAvatarDimen,
                     getDimensionFix(hvMarginDimen),
                     getMeasuredWidth() - hvMarginDimen,
-                    getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
-            avatar3.layout(avatar2.getLeft() - hvMarginDimen - hvAvatarMiniDimen,
+                    getDimensionFix(hvAvatarDimen + hvMarginDimen));
+            if (hvStyle == STYLE_NORMAL) {
+                avatar2.layout(hvMarginDimen,
+                        getDimensionFix(hvMarginDimen),
+                        hvAvatarMiniDimen + hvMarginDimen,
+                        getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
+                avatar3.layout(avatar2.getRight() + hvMarginDimen,
+                        getDimensionFix(hvMarginDimen),
+                        avatar2.getRight() + hvAvatarMiniDimen + hvMarginDimen,
+                        getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
+                arrow.layout(0,
+                        getMeasuredHeight() - hvArrowDimen,
+                        hvArrowDimen,
+                        getMeasuredHeight());
+                username.layout(arrow.getRight(),
+                        avatar.getBottom() + hvMarginDimen,
+                        getMeasuredWidth() - hvMarginDimen,
+                        avatar.getBottom() + hvMarginDimen + hvTextDimen);
+                email.layout(arrow.getRight(),
+                        username.getBottom(),
+                        getMeasuredWidth() - hvMarginDimen,
+                        username.getBottom() + hvTextDimen);
+            }
+            if (hvStyle == STYLE_COMPACT) {
+                avatar3.layout(0, 0, 0, 0);
+                avatar2.layout(0, 0, 0, 0);
+                arrow.layout(0,
+                        getDimensionFix(getMeasuredHeight()) / 2 - hvArrowDimen / 2,
+                        hvArrowDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2 + hvArrowDimen / 2);
+                username.layout(arrow.getRight(),
+                        getDimensionFix(getMeasuredHeight()) / 2 - hvTextDimen,
+                        avatar.getLeft() - hvMarginDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2);
+                email.layout(arrow.getRight(),
+                        getDimensionFix(getMeasuredHeight()) / 2,
+                        avatar.getLeft() - hvMarginDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2 + hvTextDimen);
+            }
+        } else {
+            avatar.layout(hvMarginDimen,
                     getDimensionFix(hvMarginDimen),
-                    avatar2.getLeft() - hvMarginDimen,
-                    getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
-            arrow.layout(getMeasuredWidth() - hvArrowDimen,
-                    getMeasuredHeight() - hvArrowDimen,
-                    getMeasuredWidth(),
-                    getMeasuredHeight());
-            username.layout(hvMarginDimen,
-                    avatar.getBottom() + hvMarginDimen,
-                    arrow.getLeft(),
-                    avatar.getBottom() + hvMarginDimen + hvTextDimen);
-            email.layout(hvMarginDimen,
-                    username.getBottom(),
-                    arrow.getLeft(),
-                    username.getBottom() + hvTextDimen);
-        }
-        if (hvStyle == STYLE_COMPACT) {
-            avatar3.layout(0, 0, 0, 0);
-            avatar2.layout(0, 0, 0, 0);
-            arrow.layout(getMeasuredWidth() - hvArrowDimen,
-                    getDimensionFix(getMeasuredHeight()) / 2 - hvArrowDimen / 2,
-                    getMeasuredWidth(),
-                    getDimensionFix(getMeasuredHeight()) / 2 + hvArrowDimen / 2);
-            username.layout(avatar.getRight() + hvMarginDimen,
-                    getDimensionFix(getMeasuredHeight()) / 2 - hvTextDimen,
-                    arrow.getLeft(),
-                    getDimensionFix(getMeasuredHeight()) / 2);
-            email.layout(avatar.getRight() + hvMarginDimen,
-                    getDimensionFix(getMeasuredHeight()) / 2,
-                    arrow.getLeft(),
-                    getDimensionFix(getMeasuredHeight()) / 2 + hvTextDimen);
+                    hvMarginDimen + hvAvatarDimen,
+                    getDimensionFix(hvAvatarDimen + hvMarginDimen));
+            if (hvStyle == STYLE_NORMAL) {
+                avatar2.layout(getMeasuredWidth() - hvMarginDimen - hvAvatarMiniDimen,
+                        getDimensionFix(hvMarginDimen),
+                        getMeasuredWidth() - hvMarginDimen,
+                        getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
+                avatar3.layout(avatar2.getLeft() - hvMarginDimen - hvAvatarMiniDimen,
+                        getDimensionFix(hvMarginDimen),
+                        avatar2.getLeft() - hvMarginDimen,
+                        getDimensionFix(hvAvatarMiniDimen + hvMarginDimen));
+                arrow.layout(getMeasuredWidth() - hvArrowDimen,
+                        getMeasuredHeight() - hvArrowDimen,
+                        getMeasuredWidth(),
+                        getMeasuredHeight());
+                username.layout(hvMarginDimen,
+                        avatar.getBottom() + hvMarginDimen,
+                        arrow.getLeft(),
+                        avatar.getBottom() + hvMarginDimen + hvTextDimen);
+                email.layout(hvMarginDimen,
+                        username.getBottom(),
+                        arrow.getLeft(),
+                        username.getBottom() + hvTextDimen);
+            }
+            if (hvStyle == STYLE_COMPACT) {
+                avatar3.layout(0, 0, 0, 0);
+                avatar2.layout(0, 0, 0, 0);
+                arrow.layout(getMeasuredWidth() - hvArrowDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2 - hvArrowDimen / 2,
+                        getMeasuredWidth(),
+                        getDimensionFix(getMeasuredHeight()) / 2 + hvArrowDimen / 2);
+                username.layout(avatar.getRight() + hvMarginDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2 - hvTextDimen,
+                        arrow.getLeft(),
+                        getDimensionFix(getMeasuredHeight()) / 2);
+                email.layout(avatar.getRight() + hvMarginDimen,
+                        getDimensionFix(getMeasuredHeight()) / 2,
+                        arrow.getLeft(),
+                        getDimensionFix(getMeasuredHeight()) / 2 + hvTextDimen);
+            }
         }
     }
 

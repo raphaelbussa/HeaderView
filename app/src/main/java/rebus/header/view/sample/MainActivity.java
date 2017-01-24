@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         headerView.setDialogTitle("Choose account");
         //headerView.setShowArrow(false);
         headerView.setFragmentManager(getFragmentManager());
-
         headerView.setCallback(new HeaderCallback() {
 
             @Override

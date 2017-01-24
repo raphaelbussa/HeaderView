@@ -24,6 +24,7 @@
 
 package rebus.header.view;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -53,6 +54,7 @@ public class ProfileChooserFragment extends DialogFragment {
     private ImageView add;
 
     private ProfileChooserCallback callback;
+    private boolean hvIsRTL;
 
     public static ProfileChooserFragment newInstance(SparseArray<Profile> profileSparseArray, ArrayList<Item> items, int accent, boolean showAdd, String titleValue, int icon) {
         Bundle bundle = new Bundle();
@@ -75,9 +77,11 @@ public class ProfileChooserFragment extends DialogFragment {
         linearLayout1 = (LinearLayout) rootView.findViewById(R.id.hw_action_container);
         title = (TextView) rootView.findViewById(R.id.hw_dialog_title);
         add = (ImageView) rootView.findViewById(R.id.hv_add_profile);
+        hvIsRTL = getResources().getBoolean(R.bool.is_right_to_left);
         return rootView;
     }
 
+    @SuppressLint("RtlHardcoded")
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -92,6 +96,7 @@ public class ProfileChooserFragment extends DialogFragment {
         add.setImageResource(icon);
         title.setTextColor(Utils.getTextColorPrimary(getActivity()));
         title.setText(titleValue);
+        title.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
         add.setVisibility(showAdd ? View.VISIBLE : View.INVISIBLE);
         add.setColorFilter(Utils.getTextColorPrimary(getActivity()));
         add.setBackgroundResource(Utils.selectableItemBackgroundBorderless(getActivity()));
@@ -134,7 +139,7 @@ public class ProfileChooserFragment extends DialogFragment {
                 textView.setBackgroundResource(Utils.selectableItemBackground(getActivity()));
                 textView.setPadding(padding, padding / 2, padding, padding / 2);
                 textView.setTextColor(Utils.getTextColorSecondary(getActivity()));
-                textView.setGravity(Gravity.CENTER_VERTICAL);
+                textView.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

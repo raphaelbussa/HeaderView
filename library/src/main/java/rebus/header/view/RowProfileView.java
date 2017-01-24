@@ -24,6 +24,7 @@
 
 package rebus.header.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -58,6 +59,7 @@ class RowProfileView extends ViewGroup {
 
     private Profile hvProfile;
     private boolean hvActive;
+    private boolean hvIsRTL;
 
     private int accent = Color.BLACK;
 
@@ -116,6 +118,7 @@ class RowProfileView extends ViewGroup {
             ImageLoader.loadImage(hvProfile.getAvatarUri(), avatar, ImageLoader.AVATAR);
     }
 
+    @SuppressLint("RtlHardcoded")
     private void addViews() {
         LayoutParams avatarLayoutParams = new LayoutParams(hvAvatarRowDimen, hvAvatarRowDimen);
         LayoutParams checkLayoutParams = new LayoutParams(hvRowCheckDimen, hvRowCheckDimen);
@@ -127,12 +130,12 @@ class RowProfileView extends ViewGroup {
         check.setColorFilter(accent);
         username = new TextView(getContext());
         username.setTextColor(Utils.getTextColorPrimary(getContext()));
-        username.setGravity(Gravity.CENTER_VERTICAL);
+        username.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
         username.setMaxLines(1);
         username.setEllipsize(TextUtils.TruncateAt.END);
         email = new TextView(getContext());
         email.setTextColor(Utils.getTextColorSecondary(getContext()));
-        email.setGravity(Gravity.CENTER_VERTICAL);
+        email.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
         email.setMaxLines(1);
         email.setEllipsize(TextUtils.TruncateAt.END);
         addView(avatar, avatarLayoutParams);
@@ -143,6 +146,7 @@ class RowProfileView extends ViewGroup {
 
     private void setupResources() {
         accent = Color.BLACK;
+        hvIsRTL = getResources().getBoolean(R.bool.is_right_to_left);
         hvAvatarRowDimen = getResources().getDimensionPixelSize(R.dimen.hv_row_avatar);
         hvRowHeightDimen = getResources().getDimensionPixelSize(R.dimen.hv_row_height);
         hvRowMarginDimen = getResources().getDimensionPixelSize(R.dimen.hv_row_margin);
@@ -160,22 +164,41 @@ class RowProfileView extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (!changed) return;
-        avatar.layout(hvRowMarginDimen,
-                getMeasuredHeight() / 2 - hvAvatarRowDimen / 2,
-                hvRowMarginDimen + hvAvatarRowDimen,
-                getMeasuredHeight() / 2 + hvAvatarRowDimen / 2);
-        check.layout(getMeasuredWidth() - hvRowMarginDimen - hvRowCheckDimen,
-                getMeasuredHeight() / 2 - hvRowCheckDimen / 2,
-                getMeasuredWidth() - hvRowMarginDimen,
-                getMeasuredHeight() / 2 + hvRowCheckDimen / 2);
-        username.layout(avatar.getRight() + hvRowMarginTextDimen,
-                getMeasuredHeight() / 2 - hvTextDimen,
-                check.getLeft() - hvRowMarginTextDimen,
-                getMeasuredHeight() / 2);
-        email.layout(avatar.getRight() + hvRowMarginTextDimen,
-                getMeasuredHeight() / 2,
-                check.getLeft() - hvRowMarginTextDimen,
-                getMeasuredHeight() / 2 + hvTextDimen);
+        if (hvIsRTL) {
+            avatar.layout(getMeasuredWidth() - hvRowMarginDimen - hvAvatarRowDimen,
+                    getMeasuredHeight() / 2 - hvAvatarRowDimen / 2,
+                    getMeasuredWidth() - hvRowMarginDimen,
+                    getMeasuredHeight() / 2 + hvAvatarRowDimen / 2);
+            check.layout(hvRowMarginDimen,
+                    getMeasuredHeight() / 2 - hvRowCheckDimen / 2,
+                    hvRowCheckDimen + hvRowMarginDimen,
+                    getMeasuredHeight() / 2 + hvRowCheckDimen / 2);
+            username.layout(check.getRight() + hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2 - hvTextDimen,
+                    avatar.getLeft() - hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2);
+            email.layout(check.getRight() + hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2,
+                    avatar.getLeft() - hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2 + hvTextDimen);
+        } else {
+            avatar.layout(hvRowMarginDimen,
+                    getMeasuredHeight() / 2 - hvAvatarRowDimen / 2,
+                    hvRowMarginDimen + hvAvatarRowDimen,
+                    getMeasuredHeight() / 2 + hvAvatarRowDimen / 2);
+            check.layout(getMeasuredWidth() - hvRowMarginDimen - hvRowCheckDimen,
+                    getMeasuredHeight() / 2 - hvRowCheckDimen / 2,
+                    getMeasuredWidth() - hvRowMarginDimen,
+                    getMeasuredHeight() / 2 + hvRowCheckDimen / 2);
+            username.layout(avatar.getRight() + hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2 - hvTextDimen,
+                    check.getLeft() - hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2);
+            email.layout(avatar.getRight() + hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2,
+                    check.getLeft() - hvRowMarginTextDimen,
+                    getMeasuredHeight() / 2 + hvTextDimen);
+        }
     }
 
 }
