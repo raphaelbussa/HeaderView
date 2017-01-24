@@ -32,17 +32,17 @@ public class HeaderCallback implements ProfileChooserCallback {
 
     @Override
     public boolean onSelect(int id, boolean isActive) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean onItem(int id) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean onAdd() {
-        return false;
+        return true;
     }
 
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ The MIT License (MIT)
   ~
   ~ Copyright (c) 2017 Raphaël Bussa
@@ -26,10 +25,19 @@
 <rebus.header.view.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header_view"
-    app:hv_add_status_bar_height="true"
-    app:hv_style="compact"
-    app:hv_theme="light"
-    app:hv_highlight_color="@color/colorAccent"
-    app:hv_dialog_title="@string/account"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    app:hv_add_icon="@drawable/ic_action_settings"
+    app:hv_add_status_bar_height="true"
+    app:hv_background_color="@color/colorPrimaryDark"
+    app:hv_dialog_title="@string/account"
+    app:hv_highlight_color="@color/colorAccent"
+    app:hv_profile_avatar="@drawable/ic_placeholder"
+    app:hv_profile_background="@drawable/ic_placeholder_bg"
+    app:hv_profile_email="batman@gotham.city"
+    app:hv_profile_username="Bruce Wayne"
+    app:hv_show_add_button="true"
+    app:hv_show_arrow="true"
+    app:hv_show_gradient="true"
+    app:hv_style="normal"
+    app:hv_theme="light" />

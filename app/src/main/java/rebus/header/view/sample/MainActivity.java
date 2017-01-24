@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .setId(2)
                 .setUsername("Raphaël Bussa")
                 .setEmail("raphaelbussa@gmail.com")
-                .setAvatar("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
+                .setAvatar("https://github.com/rebus007.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1473220464492-452fb02e6221?dpr=2&auto=format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 .setId(4)
                 .setUsername("Federico Gentile")
                 .setEmail("fgentile95dev@icloud.com")
-                .setAvatar("https://avatars2.githubusercontent.com/u/22976202?v=3&s=460")
+                .setAvatar("https://github.com/FedeGens.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1469173479606-ada03df615ac?dpr=2&auto=format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 .setId(6)
                 .setUsername("Luca Rurio")
                 .setEmail("rurio.luca@gmail.com")
-                .setAvatar("https://avatars3.githubusercontent.com/u/16242044?v=3&s=460")
+                .setAvatar("https://github.com/RurioLuca.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1473789810014-375ed569d0ed?dpr=2&auto=format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 .setId(8)
                 .setUsername("Claudio Pastorini")
                 .setEmail("pastorini.claudio@gmail.com")
-                .setAvatar("https://avatars0.githubusercontent.com/u/4195199?v=3&s=460")
+                .setAvatar("https://github.com/claudiopastorini.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1452509133926-2b180c6d6245?dpr=2&auto=format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -113,15 +113,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         headerView.setStyle(HeaderView.STYLE_NORMAL);
-        headerView.setShowGradient(true);
         headerView.setTheme(HeaderView.THEME_LIGHT);
+        headerView.setShowGradient(true);
         headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
         headerView.addProfile(profile, profile2, profile3, profile4);
         headerView.addDialogItem(item, item2);
         headerView.setShowAddButton(true);
-        //headerView.setAddIconDrawable(R.drawable.ic_action_settings);
+        headerView.setAddIconDrawable(R.drawable.ic_action_settings);
         headerView.setDialogTitle("Choose account");
-        //headerView.setShowArrow(false);
+        headerView.setShowArrow(true);
+        headerView.setOnHeaderClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(GravityCompat.START, true);
+            }
+        });
         headerView.setFragmentManager(getFragmentManager());
         headerView.setCallback(new HeaderCallback() {
 
@@ -152,13 +158,13 @@ public class MainActivity extends AppCompatActivity {
                 Profile newProfile = new Profile.Builder()
                         .setId(100)
                         .setUsername("Mattia Novelli")
-                        .setEmail("@mattinove")
-                        .setAvatar("https://avatars1.githubusercontent.com/u/12815527?v=3&s=460")
+                        .setEmail("mattinove@me.com")
+                        .setAvatar("https://github.com/mattinove.png?size=512")
                         .setBackground("https://images.unsplash.com/photo-1478194409487-fa5c1eb18622?dpr=2&auto=format&fit=crop&w=767&h=496&q=80&cs=tinysrgb&crop=")
                         .build();
                 headerView.addProfile(newProfile);
                 headerView.setProfileActive(100);
-                return false;
+                return true;
             }
 
         });

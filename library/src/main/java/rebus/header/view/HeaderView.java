@@ -604,6 +604,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         arrow = new ImageView(getContext());
         arrow.setImageResource(R.drawable.hv_arrow);
         arrow.setBackgroundResource(Utils.selectableItemBackground(getContext()));
+        arrow.setColorFilter(hvTextColor);
         arrow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
