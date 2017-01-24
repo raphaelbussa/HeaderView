@@ -116,6 +116,28 @@ app:hv_add_icon="@drawable/ic_action_settings"
 headerView.setShowAddButton(true);
 app:hv_show_add_button="true"
 ```
+#### Callback
+```Java
+headerView.setCallback(new HeaderCallback() {
+
+    @Override
+    public boolean onSelect(int id, boolean isActive) {
+        //return profile id selected and if is the active profile
+        return true; //true for close the dialog, false for do nothing
+    }
+
+    @Override
+    public boolean onItem(int id) {
+        //return witch buttom item is selected
+        return true; //true for close the dialog, false for do nothing
+    }
+
+    @Override
+    public boolean onAdd() {
+        return true; //true for close the dialog, false for do nothing
+    }
+});
+```
 #### Loading image from network
 Just add this in your class Application (of course you can use your preferred libs for load images)
 ```Java
