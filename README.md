@@ -22,7 +22,128 @@ dependencies {
 }
 ```
 ### How to use
-//TODO
+#### Via XML
+Create a layout named like this header_drawer.xml
+```XML
+<rebus.header.view.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:hv_add_icon="@drawable/ic_action_settings"
+    app:hv_add_status_bar_height="true"
+    app:hv_background_color="@color/colorPrimaryDark"
+    app:hv_dialog_title="@string/account"
+    app:hv_highlight_color="@color/colorAccent"
+    app:hv_profile_avatar="@drawable/ic_placeholder"
+    app:hv_profile_background="@drawable/ic_placeholder_bg"
+    app:hv_profile_email="batman@gotham.city"
+    app:hv_profile_username="Bruce Wayne"
+    app:hv_show_add_button="true"
+    app:hv_show_arrow="true"
+    app:hv_show_gradient="true"
+    app:hv_style="normal"
+    app:hv_theme="light" />
+```
+And in your NavigationView
+
+```XML
+<android.support.design.widget.NavigationView
+    android:id="@+id/nav_view"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:headerLayout="@layout/header_drawer"
+    app:menu="@menu/drawer" />
+```
+#### Manage Profiles
+The new HeaderView manage different profile and a new profile chooser inspired from YouTube android app
+- Create a profile
+```Java
+Profile profile = new Profile.Builder()
+        .setId(2)
+        .setUsername("Raphaël Bussa")
+        .setEmail("raphaelbussa@gmail.com")
+        .setAvatar("https://github.com/rebus007.png?size=512")
+        .setBackground("https://images.unsplash.com/photo-1473220464492-452fb02e6221?dpr=2&auto=format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=")
+        .build();
+```
+- Add a profile
+```Java
+headerView.addProfile(profile);
+```
+- Set a profile active
+```Java
+headerView.setProfileActive(2);
+```
+- Remove a profile
+```Java
+headerView.removeProfile(2);
+```
+- Get actual active profile
+```Java
+int activeProfileId = headerView.getProfileActive();
+```
+
+#### Customize Profile Chooser
+You can also customize the profile chooser
+- Add bottom items
+```Java
+Item item = new Item.Builder()
+        .setId(1)
+        .setTitle("Remove all profile")
+        .build();
+
+headerView.addDialogItem(item);
+```
+- HighlightColor in dialog
+```
+headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
+app:hv_highlight_color="@color/colorAccent"
+```
+- Change dialog title
+```
+headerView.setDialogTitle("Choose account");
+app:hv_dialog_title="Dialog title"
+```
+- Change dialog top icon
+```
+headerView.setAddIconDrawable(R.drawable.ic_action_settings);
+app:hv_add_icon="@drawable/ic_action_settings"
+```
+- Or hide dialog top icon
+```
+headerView.setShowAddButton(true);
+app:hv_show_add_button="true"
+```
+#### Loading image from network
+Just add this in your class Application (of course you can use your preferred libs for load images)
+```Java
+ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
+    @Override
+    public void loadImage(Uri url, ImageView imageView, @ImageLoader.Type int type) {
+        switch (type) {
+            case ImageLoader.AVATAR:
+                Glide.with(imageView.getContext())
+                        .load(url)
+                        .asBitmap()
+                        .placeholder(R.drawable.ic_placeholder)
+                        .error(R.drawable.ic_placeholder)
+                        .into(imageView);
+                break;
+             case ImageLoader.HEADER:
+                Glide.with(imageView.getContext())
+                        .load(url)
+                        .asBitmap()
+                        .placeholder(R.drawable.ic_placeholder_bg)
+                        .error(R.drawable.ic_placeholder_bg)
+                        .into(imageView);
+                break;
+        }
+    }
+
+});
+```
 
 ### Sample
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
