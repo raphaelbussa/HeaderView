@@ -18,7 +18,7 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:2.0.0-BETA-3'
+    compile 'rebus:header-view:2.0.0-BETA-4'
 }
 ```
 ### How to use

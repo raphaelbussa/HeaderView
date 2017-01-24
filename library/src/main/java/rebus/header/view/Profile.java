@@ -24,10 +24,10 @@
 
 package rebus.header.view;
 
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
@@ -58,18 +58,18 @@ public class Profile implements Parcelable {
     @IdValue
     private int id;
     private Uri avatarUri;
-    private Drawable avatarDrawable;
+    private int avatarRes;
     private Uri backgroundUri;
-    private Drawable backgroundDrawable;
+    private int backgroundRes;
     private Spanned username;
     private Spanned email;
 
-    private Profile(int id, Uri avatarUri, Drawable avatarDrawable, Uri backgroundUri, Drawable backgroundDrawable, Spanned username, Spanned email) {
+    private Profile(int id, Uri avatarUri, int avatarRes, Uri backgroundUri, int backgroundRes, Spanned username, Spanned email) {
         this.id = id;
         this.avatarUri = avatarUri;
-        this.avatarDrawable = avatarDrawable;
+        this.avatarRes = avatarRes;
         this.backgroundUri = backgroundUri;
-        this.backgroundDrawable = backgroundDrawable;
+        this.backgroundRes = backgroundRes;
         this.username = username;
         this.email = email;
     }
@@ -77,9 +77,9 @@ public class Profile implements Parcelable {
     private Profile(Parcel in) {
         id = in.readInt();
         avatarUri = (Uri) in.readValue(Uri.class.getClassLoader());
-        avatarDrawable = (Drawable) in.readValue(Drawable.class.getClassLoader());
+        avatarRes = in.readInt();
         backgroundUri = (Uri) in.readValue(Uri.class.getClassLoader());
-        backgroundDrawable = (Drawable) in.readValue(Drawable.class.getClassLoader());
+        backgroundRes = in.readInt();
         username = (Spanned) in.readValue(Spanned.class.getClassLoader());
         email = (Spanned) in.readValue(Spanned.class.getClassLoader());
     }
@@ -92,16 +92,16 @@ public class Profile implements Parcelable {
         return avatarUri;
     }
 
-    Drawable getAvatarDrawable() {
-        return avatarDrawable;
+    int getAvatarRes() {
+        return avatarRes;
     }
 
     Uri getBackgroundUri() {
         return backgroundUri;
     }
 
-    Drawable getBackgroundDrawable() {
-        return backgroundDrawable;
+    int getBackgroundRes() {
+        return backgroundRes;
     }
 
     Spanned getUsername() {
@@ -117,9 +117,9 @@ public class Profile implements Parcelable {
         return "Profile{" +
                 "id=" + id +
                 ", avatarUri=" + avatarUri +
-                ", avatarDrawable=" + avatarDrawable +
+                ", avatarRes=" + avatarRes +
                 ", backgroundUri=" + backgroundUri +
-                ", backgroundDrawable=" + backgroundDrawable +
+                ", backgroundRes=" + backgroundRes +
                 ", username=" + username +
                 ", email=" + email +
                 '}';
@@ -134,9 +134,9 @@ public class Profile implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeValue(avatarUri);
-        dest.writeValue(avatarDrawable);
+        dest.writeValue(avatarRes);
         dest.writeValue(backgroundUri);
-        dest.writeValue(backgroundDrawable);
+        dest.writeValue(backgroundRes);
         dest.writeValue(username);
         dest.writeValue(email);
     }
@@ -152,9 +152,9 @@ public class Profile implements Parcelable {
         @IdValue
         private int id;
         private Uri avatarUri;
-        private Drawable avatarDrawable;
+        private int avatarRes;
         private Uri backgroundUri;
-        private Drawable backgroundDrawable;
+        private int backgroundRes;
         private Spanned username;
         private Spanned email;
 
@@ -176,7 +176,7 @@ public class Profile implements Parcelable {
          */
         public Builder setAvatar(@NonNull Uri avatar) {
             this.avatarUri = avatar;
-            this.avatarDrawable = null;
+            this.avatarRes = 0;
             return this;
         }
 
@@ -186,16 +186,16 @@ public class Profile implements Parcelable {
          */
         public Builder setAvatar(@NonNull String avatar) {
             this.avatarUri = Uri.parse(avatar);
-            this.avatarDrawable = null;
+            this.avatarRes = 0;
             return this;
         }
 
         /**
-         * @param avatar set avatar drawable
+         * @param avatar set avatar drawable res
          * @return current builder instance
          */
-        public Builder setAvatar(Drawable avatar) {
-            this.avatarDrawable = avatar;
+        public Builder setAvatar(@DrawableRes int avatar) {
+            this.avatarRes = avatar;
             this.avatarUri = null;
             return this;
         }
@@ -206,7 +206,7 @@ public class Profile implements Parcelable {
          */
         public Builder setBackground(@NonNull Uri background) {
             this.backgroundUri = background;
-            this.backgroundDrawable = null;
+            this.backgroundRes = 0;
             return this;
         }
 
@@ -216,16 +216,16 @@ public class Profile implements Parcelable {
          */
         public Builder setBackground(@NonNull String background) {
             this.backgroundUri = Uri.parse(background);
-            this.backgroundDrawable = null;
+            this.backgroundRes = 0;
             return this;
         }
 
         /**
-         * @param background set background drawable
+         * @param background set background drawable res
          * @return current builder instance
          */
-        public Builder setBackground(Drawable background) {
-            this.backgroundDrawable = background;
+        public Builder setBackground(@DrawableRes int background) {
+            this.backgroundRes = background;
             this.backgroundUri = null;
             return this;
         }
@@ -270,7 +270,7 @@ public class Profile implements Parcelable {
          * @return build Profile and return it
          */
         public Profile build() {
-            return new Profile(id, avatarUri, avatarDrawable, backgroundUri, backgroundDrawable, username, email);
+            return new Profile(id, avatarUri, avatarRes, backgroundUri, backgroundRes, username, email);
         }
 
     }

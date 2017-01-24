@@ -64,14 +64,12 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
-    private static final String TAG = HeaderView.class.getName();
-    private static final String PROFILE_LIST = "PROFILE_LIST";
-
     public static final int STYLE_NORMAL = 1;
     public static final int STYLE_COMPACT = 2;
     public static final int THEME_LIGHT = 1;
     public static final int THEME_DARK = 2;
-
+    private static final String TAG = HeaderView.class.getName();
+    private static final String PROFILE_LIST = "PROFILE_LIST";
     private int statusBarHeight;
 
     private CircleImageView avatar;
@@ -110,6 +108,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     private HeaderCallback headerCallback;
     private FragmentManager hvFragmentManager;
+    private ProfileChooser profileChooser;
 
     public HeaderView(Context context) {
         super(context);
@@ -375,6 +374,21 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         hvDialogTitle = dialogTitle;
     }
 
+    /**
+     * dismiss profile chooser dialog
+     */
+    public void dismissProfileChooser() {
+        if (hvFragmentManager != null) {
+            ProfileChooserFragment profileChooserFragment = (ProfileChooserFragment) hvFragmentManager.findFragmentByTag(ProfileChooserFragment.FRAGMENT_TAG);
+            if (profileChooserFragment != null) {
+                profileChooserFragment.dismiss();
+            }
+        }
+        if (profileChooser != null && profileChooser.isShowing()) {
+            profileChooser.dismiss();
+        }
+    }
+
     private void populateAvatar() {
         int size = profileSparseArray.size();
         Log.d(TAG, "profileSparseArray.size() [" + profileSparseArray.size() + "]");
@@ -414,10 +428,10 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     private void setFirstProfile(Profile profile) {
         username.setText(profile.getUsername());
         email.setText(profile.getEmail());
-        if (profile.getAvatarDrawable() != null)
-            avatar.setImageDrawable(profile.getAvatarDrawable());
-        if (profile.getBackgroundDrawable() != null)
-            background.setImageDrawable(profile.getBackgroundDrawable());
+        if (profile.getAvatarRes() != 0)
+            avatar.setImageResource(profile.getAvatarRes());
+        if (profile.getBackgroundRes() != 0)
+            background.setImageResource(profile.getBackgroundRes());
         if (profile.getAvatarUri() != null)
             ImageLoader.loadImage(profile.getAvatarUri(), avatar, ImageLoader.AVATAR);
         if (profile.getBackgroundUri() != null)
@@ -435,8 +449,8 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     }
 
     private void setSecondProfile(Profile profile) {
-        if (profile.getAvatarDrawable() != null)
-            avatar2.setImageDrawable(profile.getAvatarDrawable());
+        if (profile.getAvatarRes() != 0)
+            avatar2.setImageResource(profile.getAvatarRes());
         if (profile.getAvatarUri() != null)
             ImageLoader.loadImage(profile.getAvatarUri(), avatar2, ImageLoader.AVATAR);
         avatar2.setVisibility(VISIBLE);
@@ -451,8 +465,8 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     }
 
     private void setThirdProfile(Profile profile) {
-        if (profile.getAvatarDrawable() != null)
-            avatar3.setImageDrawable(profile.getAvatarDrawable());
+        if (profile.getAvatarRes() != 0)
+            avatar3.setImageResource(profile.getAvatarRes());
         if (profile.getAvatarUri() != null)
             ImageLoader.loadImage(profile.getAvatarUri(), avatar3, ImageLoader.AVATAR);
         avatar3.setVisibility(VISIBLE);
@@ -523,12 +537,13 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
         if ((hvUsername != null && !hvUsername.isEmpty()) || (hvEmail != null && !hvEmail.isEmpty()) || hvAvatar != 0 || hvBackground != 0) {
             Log.d(TAG, "profile created from XML");
+
             Profile profile = new Profile.Builder()
                     .setId(1)
                     .setUsername(hvUsername)
                     .setEmail(hvEmail)
-                    .setAvatar(Utils.getDrawable(getContext(), hvAvatar))
-                    .setBackground(Utils.getDrawable(getContext(), hvBackground))
+                    .setAvatar(hvAvatar)
+                    .setBackground(hvBackground)
                     .build();
 
             profileSparseArray.put(profile.getId(), profile);
@@ -613,7 +628,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
                     profileChooserFragment.setCallback(HeaderView.this);
                     profileChooserFragment.show(hvFragmentManager, ProfileChooserFragment.FRAGMENT_TAG);
                 } else {
-                    ProfileChooser profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
+                    profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
                     profileChooser.setCallback(HeaderView.this);
                     profileChooser.show();
                 }

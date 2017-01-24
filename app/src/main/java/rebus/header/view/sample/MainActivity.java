@@ -164,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 headerView.addProfile(newProfile);
                 headerView.setProfileActive(100);
-                return true;
+                headerView.dismissProfileChooser();
+                return false;
             }
 
         });

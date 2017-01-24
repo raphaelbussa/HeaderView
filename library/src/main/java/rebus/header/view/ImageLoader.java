@@ -70,9 +70,9 @@ public class ImageLoader {
 
     public interface ImageLoaderInterface {
         /**
-         * @param url uri of image
+         * @param url       uri of image
          * @param imageView reference of ImageView
-         * @param type type of image to load AVATAR or HEADER
+         * @param type      type of image to load AVATAR or HEADER
          */
         void loadImage(Uri url, ImageView imageView, @Type int type);
     }

@@ -112,8 +112,8 @@ class RowProfileView extends ViewGroup {
         email.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
         username.setText(hvProfile.getUsername());
         email.setText(hvProfile.getEmail());
-        if (hvProfile.getAvatarDrawable() != null)
-            avatar.setImageDrawable(hvProfile.getAvatarDrawable());
+        if (hvProfile.getAvatarRes() != 0)
+            avatar.setImageResource(hvProfile.getAvatarRes());
         if (hvProfile.getAvatarUri() != null)
             ImageLoader.loadImage(hvProfile.getAvatarUri(), avatar, ImageLoader.AVATAR);
     }

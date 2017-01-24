@@ -34,8 +34,6 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.TypedValue;
 
-import java.util.Locale;
-
 /**
  * Created by raphaelbussa on 13/01/17.
  */
