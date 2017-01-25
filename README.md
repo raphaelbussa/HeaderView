@@ -116,6 +116,10 @@ app:hv_add_icon="@drawable/ic_action_settings"
 headerView.setShowAddButton(true);
 app:hv_show_add_button="true"
 ```
+- Dismiss profile chooser dialog
+```Java
+headerView.dismissProfileChooser();
+```
 #### Callback
 ```Java
 headerView.setCallback(new HeaderCallback() {
@@ -174,6 +178,7 @@ Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
 - [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 - [Git Chat](https://github.com/rebus007/Git-Chat)
+- [The Coding Love](https://play.google.com/store/apps/details?id=rebus.thecodinglove)
 - [Romanews.eu](https://play.google.com/store/apps/details?id=it.daigan.romanews)
 - [Mob@rt](https://play.google.com/store/apps/details?id=it.artigiancassa.mobile.android.mobart)
 
