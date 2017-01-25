@@ -170,6 +170,8 @@ ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
 
 });
 ```
+### Screen
+![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/screen.png)
 
 ### Sample
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
