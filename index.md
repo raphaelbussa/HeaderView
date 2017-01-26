@@ -3,9 +3,9 @@
 [![Join the chat at https://gitter.im/rebus007/HeaderView](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rebus007/HeaderView?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Header--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2123)
 
-This is a view for NavigationView in android.support.design library
+![Logo](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/web_hi_res_512.png)
 
-![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/header.png)
+This is a view for NavigationView in android.support.design library
 
 ### Import
 At the moment the library is in my personal maven repo
@@ -18,55 +18,161 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:1.1.5'
+    compile 'rebus:header-view:2.0.0-BETA-4'
 }
 ```
 ### How to use
-You MUST declare the view in your class, you can use two different layout, normal or compact
+#### Via XML
+Create a layout named like this header_drawer.xml
+```XML
+<rebus.header.view.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:hv_add_icon="@drawable/ic_action_settings"
+    app:hv_add_status_bar_height="true"
+    app:hv_background_color="@color/colorPrimaryDark"
+    app:hv_dialog_title="@string/account"
+    app:hv_highlight_color="@color/colorAccent"
+    app:hv_profile_avatar="@drawable/ic_placeholder"
+    app:hv_profile_background="@drawable/ic_placeholder_bg"
+    app:hv_profile_email="batman@gotham.city"
+    app:hv_profile_username="Bruce Wayne"
+    app:hv_show_add_button="true"
+    app:hv_show_arrow="true"
+    app:hv_show_gradient="true"
+    app:hv_style="normal"
+    app:hv_theme="light" />
+```
+And in your NavigationView
 
-Normal Header View
-```java
-HeaderView headerView = new HeaderView(this, false); //true if you want to use this view below toolbar
-headerView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-Picasso.with(HeaderActivity.this)
-        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-        .into(headerView.background());
-Picasso.with(HeaderActivity.this)
-        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-        .into(headerView.avatar());
-headerView.username("Raphael Bussa");
-headerView.email("rapahelbussa@gmail.com");
-headerView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
-    @Override
-    public void onClick() {
-        drawerLayout.closeDrawer(GravityCompat.START);
-    }
-});
-NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-navigationView.addHeaderView(headerView);
+```XML
+<android.support.design.widget.NavigationView
+    android:id="@+id/nav_view"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:headerLayout="@layout/header_drawer"
+    app:menu="@menu/drawer" />
+```
+#### Manage Profiles
+The new HeaderView manage different profile and a new profile chooser inspired from YouTube android app
+- Create a profile
+```Java
+Profile profile = new Profile.Builder()
+        .setId(2)
+        .setUsername("Raphaël Bussa")
+        .setEmail("raphaelbussa@gmail.com")
+        .setAvatar("https://github.com/rebus007.png?size=512")
+        .setBackground("https://images.unsplash.com/photo-1473220464492-452fb02e6221?dpr=2&auto=format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=")
+        .build();
+```
+- Add a profile
+```Java
+headerView.addProfile(profile);
+```
+- Set a profile active
+```Java
+headerView.setProfileActive(2);
+```
+- Remove a profile
+```Java
+headerView.removeProfile(2);
+```
+- Get actual active profile
+```Java
+int activeProfileId = headerView.getProfileActive();
 ```
 
-Compact Header View
-```java
-HeaderCompactView headerCompactView = new HeaderCompactView(this, false); //true if you want to use this view below toolbar
-headerCompactView.background().setBackgroundColor(getResources().getColor(R.color.primary_dark));
-Picasso.with(HeaderActivity.this)
-        .load("http://www.nexus-lab.com/wp-content/uploads/2014/08/image_new-material.jpeg")
-        .into(headerCompactView.background());
-Picasso.with(HeaderActivity.this)
-        .load("https://avatars1.githubusercontent.com/u/3964819?v=3&s=460")
-        .into(headerCompactView.avatar());
-headerCompactView.username("Raphael Bussa");
-headerCompactView.email("rapahelbussa@gmail.com");
-headerCompactView.setOnHeaderClickListener(new HeaderInterface.OnHeaderClickListener() {
+#### Customize Profile Chooser
+You can also customize the profile chooser
+- Add bottom items
+```Java
+Item item = new Item.Builder()
+        .setId(1)
+        .setTitle("Remove all profile")
+        .build();
+
+headerView.addDialogItem(item);
+```
+- HighlightColor in dialog
+```
+headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
+app:hv_highlight_color="@color/colorAccent"
+```
+- Change dialog title
+```
+headerView.setDialogTitle("Choose account");
+app:hv_dialog_title="Dialog title"
+```
+- Change dialog top icon
+```
+headerView.setAddIconDrawable(R.drawable.ic_action_settings);
+app:hv_add_icon="@drawable/ic_action_settings"
+```
+- Or hide dialog top icon
+```
+headerView.setShowAddButton(true);
+app:hv_show_add_button="true"
+```
+- Dismiss profile chooser dialog
+```Java
+headerView.dismissProfileChooser();
+```
+#### Callback
+```Java
+headerView.setCallback(new HeaderCallback() {
+
     @Override
-    public void onClick() {
-        drawerLayout.closeDrawer(GravityCompat.START);
+    public boolean onSelect(int id, boolean isActive) {
+        //return profile id selected and if is the active profile
+        return true; //true for close the dialog, false for do nothing
+    }
+
+    @Override
+    public boolean onItem(int id) {
+        //return witch buttom item is selected
+        return true; //true for close the dialog, false for do nothing
+    }
+
+    @Override
+    public boolean onAdd() {
+        return true; //true for close the dialog, false for do nothing
     }
 });
-NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-navigationView.addHeaderView(headerCompactView);
 ```
+#### Loading image from network
+Just add this in your class Application (of course you can use your preferred libs for load images)
+```Java
+ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
+    @Override
+    public void loadImage(Uri url, ImageView imageView, @ImageLoader.Type int type) {
+        switch (type) {
+            case ImageLoader.AVATAR:
+                Glide.with(imageView.getContext())
+                        .load(url)
+                        .asBitmap()
+                        .placeholder(R.drawable.ic_placeholder)
+                        .error(R.drawable.ic_placeholder)
+                        .into(imageView);
+                break;
+             case ImageLoader.HEADER:
+                Glide.with(imageView.getContext())
+                        .load(url)
+                        .asBitmap()
+                        .placeholder(R.drawable.ic_placeholder_bg)
+                        .error(R.drawable.ic_placeholder_bg)
+                        .into(imageView);
+                break;
+        }
+    }
+
+});
+```
+### Screen
+![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/screen.png)
+
 ### Sample
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
 
@@ -74,6 +180,9 @@ Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
 - [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 - [Git Chat](https://github.com/rebus007/Git-Chat)
+- [The Coding Love](https://play.google.com/store/apps/details?id=rebus.thecodinglove)
+- [Romanews.eu](https://play.google.com/store/apps/details?id=it.daigan.romanews)
+- [Mob@rt](https://play.google.com/store/apps/details?id=it.artigiancassa.mobile.android.mobart)
 
 ###Developed By
 Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
@@ -84,7 +193,7 @@ Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015 Raphael Bussa <raphaelbussa@gmail.com>
+Copyright (c) 2017 Raphaël Bussa <raphaelbussa@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
