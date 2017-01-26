@@ -1,0 +1,8 @@
+title: Header View
+description: Create an header for android.support.design.widget.NavigationView
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions
