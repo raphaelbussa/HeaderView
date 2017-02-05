@@ -112,21 +112,24 @@ public class ProfileChooserFragment extends DialogFragment {
         });
         if (profileSparseArray != null) {
             for (int i = 0; i < profileSparseArray.size(); i++) {
-                RowProfileView profileView = new RowProfileView(getActivity());
-                profileView.setProfile(profileSparseArray.valueAt(i), i == 0);
-                profileView.setAccent(accent);
-                profileView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        RowProfileView rowProfileView = (RowProfileView) v;
-                        if (callback != null) {
-                            if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
-                                dismiss();
+                Profile profile = profileSparseArray.valueAt(i);
+                if (profile.getId() != 1) {
+                    RowProfileView profileView = new RowProfileView(getActivity());
+                    profileView.setProfile(profile, i == 0);
+                    profileView.setAccent(accent);
+                    profileView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            RowProfileView rowProfileView = (RowProfileView) v;
+                            if (callback != null) {
+                                if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
+                                    dismiss();
+                                }
                             }
                         }
-                    }
-                });
-                linearLayout.addView(profileView);
+                    });
+                    linearLayout.addView(profileView);
+                }
             }
         }
         if (items != null) {

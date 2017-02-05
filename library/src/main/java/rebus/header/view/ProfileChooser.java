@@ -75,21 +75,24 @@ class ProfileChooser extends Dialog {
             }
         });
         for (int i = 0; i < profileSparseArray.size(); i++) {
-            RowProfileView profileView = new RowProfileView(context);
-            profileView.setProfile(profileSparseArray.valueAt(i), i == 0);
-            profileView.setAccent(accent);
-            profileView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    RowProfileView rowProfileView = (RowProfileView) v;
-                    if (callback != null) {
-                        if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
-                            dismiss();
+            Profile profile = profileSparseArray.valueAt(i);
+            if (profile.getId() != 1) {
+                RowProfileView profileView = new RowProfileView(context);
+                profileView.setProfile(profile, i == 0);
+                profileView.setAccent(accent);
+                profileView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RowProfileView rowProfileView = (RowProfileView) v;
+                        if (callback != null) {
+                            if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
+                                dismiss();
+                            }
                         }
                     }
-                }
-            });
-            linearLayout.addView(profileView);
+                });
+                linearLayout.addView(profileView);
+            }
         }
         int padding = context.getResources().getDimensionPixelSize(R.dimen.hv_item_padding);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
