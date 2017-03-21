@@ -177,7 +177,7 @@ ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
 
 ### App using Header View
-If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
+If you use this lib [contact me](mailto:raphaelbussa@gmail.com) and I will add it to the list below:
 - [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 - [Git Chat](https://github.com/rebus007/Git-Chat)
 - [The Coding Love](https://play.google.com/store/apps/details?id=rebus.thecodinglove)
