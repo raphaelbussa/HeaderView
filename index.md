@@ -18,7 +18,7 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:2.0.0-BETA-4'
+    compile 'rebus:header-view:2.0.0-BETA-6'
 }
 ```
 ### How to use
@@ -170,6 +170,16 @@ ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
 
 });
 ```
+#### Use custom font with Calligraphy
+You can set a custom font with [Calligraphy](https://github.com/chrisjenx/Calligraphy) just add a CustomViewTypeface with HeaderView.class in CalligraphyConfig
+```Java
+CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+        .setDefaultFontPath("Oswald-Stencbab.ttf")
+        .setFontAttrId(R.attr.fontPath)
+        .addCustomViewWithSetTypeface(HeaderView.class)
+        .build()
+);
+```
 ### Screen
 ![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/screen.png)
 
@@ -177,14 +187,14 @@ ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
 Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
 
 ### App using Header View
-If you use this lib [contact me](mailto:raphaelbussa@gmail.com?subject=Header View) and I will add it to the list below:
+If you use this lib [contact me](mailto:raphaelbussa@gmail.com) and I will add it to the list below:
 - [Mister Gadget](https://play.google.com/store/apps/details?id=rebus.mister.gadget)
 - [Git Chat](https://github.com/rebus007/Git-Chat)
 - [The Coding Love](https://play.google.com/store/apps/details?id=rebus.thecodinglove)
 - [Romanews.eu](https://play.google.com/store/apps/details?id=it.daigan.romanews)
 - [Mob@rt](https://play.google.com/store/apps/details?id=it.artigiancassa.mobile.android.mobart)
 
-###Developed By
+### Developed By
 Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
 
 [ ![Twitter](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/twitter-icon.png) ](https://twitter.com/rebus_007)[ ![Google Plus](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/google-plus-icon.png) ](https://plus.google.com/+RaphaelBussa/posts)[ ![Linkedin](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/linkedin-icon.png) ](https://www.linkedin.com/in/rebus007)
