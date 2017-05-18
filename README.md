@@ -18,7 +18,7 @@ repositories {
 ```
 ```Gradle
 dependencies {
-    compile 'rebus:header-view:2.0.0-BETA-5'
+    compile 'rebus:header-view:2.0.0-BETA-6'
 }
 ```
 ### How to use
@@ -169,6 +169,16 @@ ImageLoader.init(new ImageLoader.ImageLoaderInterface() {
     }
 
 });
+```
+#### Use custom font with Calligraphy
+You can set a custom font with [Calligraphy](https://github.com/chrisjenx/Calligraphy) just add a CustomViewTypeface with HeaderView.class in CalligraphyConfig
+```Java
+CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+        .setDefaultFontPath("Oswald-Stencbab.ttf")
+        .setFontAttrId(R.attr.fontPath)
+        .addCustomViewWithSetTypeface(HeaderView.class)
+        .build()
+);
 ```
 ### Screen
 ![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/screen.png)

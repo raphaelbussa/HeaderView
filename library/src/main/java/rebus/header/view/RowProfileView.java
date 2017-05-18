@@ -63,6 +63,8 @@ class RowProfileView extends ViewGroup {
 
     private int accent = Color.BLACK;
 
+    private Typeface typeface;
+
     public RowProfileView(Context context) {
         super(context);
         init();
@@ -108,8 +110,13 @@ class RowProfileView extends ViewGroup {
             avatar.setPadding(hvRowAvatarBorderDimen, hvRowAvatarBorderDimen, hvRowAvatarBorderDimen, hvRowAvatarBorderDimen);
         }
         check.setVisibility(hvActive ? VISIBLE : INVISIBLE);
-        username.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
-        email.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+        if (typeface != null) {
+            username.setTypeface(typeface);
+            email.setTypeface(typeface);
+        } else {
+            username.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+            email.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+        }
         username.setText(hvProfile.getUsername());
         email.setText(hvProfile.getEmail());
         if (hvProfile.getAvatarRes() != 0)
@@ -199,6 +206,13 @@ class RowProfileView extends ViewGroup {
                     check.getLeft() - hvRowMarginTextDimen,
                     getMeasuredHeight() / 2 + hvTextDimen);
         }
+    }
+
+    public void setTypeface(Typeface tf) {
+        if (tf == null) return;
+        typeface = tf;
+        username.setTypeface(tf);
+        email.setTypeface(tf);
     }
 
 }

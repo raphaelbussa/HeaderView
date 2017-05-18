@@ -24,6 +24,7 @@
 
 package rebus.header.view.sample;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +41,7 @@ import rebus.header.view.HeaderCallback;
 import rebus.header.view.HeaderView;
 import rebus.header.view.Item;
 import rebus.header.view.Profile;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         headerView.addProfile(profile, profile2, profile3, profile4);
         headerView.addDialogItem(item, item2);
         headerView.setShowAddButton(true);
-        headerView.setAddIconDrawable(R.drawable.ic_action_settings);
+        //headerView.setAddIconDrawable(R.drawable.ic_action_settings);
         headerView.setDialogTitle("Choose account");
         headerView.setShowArrow(true);
         headerView.setOnHeaderClickListener(new View.OnClickListener() {
@@ -172,6 +174,11 @@ public class MainActivity extends AppCompatActivity {
 
         //headerView.addProfile(profile, profile2, profile3);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 }

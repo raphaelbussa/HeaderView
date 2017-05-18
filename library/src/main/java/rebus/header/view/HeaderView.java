@@ -110,6 +110,8 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     private FragmentManager hvFragmentManager;
     private ProfileChooser profileChooser;
 
+    private Typeface typeface;
+
     public HeaderView(Context context) {
         super(context);
         init(null, 0);
@@ -626,9 +628,10 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
                 if (hvFragmentManager != null) {
                     ProfileChooserFragment profileChooserFragment = ProfileChooserFragment.newInstance(profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
                     profileChooserFragment.setCallback(HeaderView.this);
+                    profileChooserFragment.setTypeface(typeface);
                     profileChooserFragment.show(hvFragmentManager, ProfileChooserFragment.FRAGMENT_TAG);
                 } else {
-                    profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
+                    profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable, typeface);
                     profileChooser.setCallback(HeaderView.this);
                     profileChooser.show();
                 }
@@ -809,6 +812,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             ProfileChooserFragment profileChooserFragment = (ProfileChooserFragment) hvFragmentManager.findFragmentByTag(ProfileChooserFragment.FRAGMENT_TAG);
             if (profileChooserFragment != null) {
                 profileChooserFragment.setCallback(HeaderView.this);
+                profileChooserFragment.updateTypeface(typeface);
             }
         }
         super.onRestoreInstanceState(state);
@@ -842,6 +846,14 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     @IntRange(from = 1, to = 2)
     @Retention(RetentionPolicy.SOURCE)
     public @interface Theme {
+    }
+
+    @SuppressWarnings("unused")
+    public void setTypeface(Typeface tf) {
+        typeface = tf;
+        username.setTypeface(tf);
+        email.setTypeface(tf);
+        invalidate();
     }
 
 }

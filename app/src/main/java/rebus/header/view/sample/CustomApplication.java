@@ -30,7 +30,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import rebus.header.view.HeaderView;
 import rebus.header.view.ImageLoader;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by raphaelbussa on 13/01/17.
@@ -65,6 +67,11 @@ public class CustomApplication extends Application {
             }
 
         });
-
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("Oswald-Stencbab.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .addCustomViewWithSetTypeface(HeaderView.class)
+                .build()
+        );
     }
 }

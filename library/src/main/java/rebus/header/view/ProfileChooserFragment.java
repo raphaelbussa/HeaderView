@@ -26,6 +26,7 @@ package rebus.header.view;
 
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.SparseArray;
@@ -54,6 +55,7 @@ public class ProfileChooserFragment extends DialogFragment {
     private ImageView add;
 
     private ProfileChooserCallback callback;
+    private Typeface typeface;
     private boolean hvIsRTL;
 
     public static ProfileChooserFragment newInstance(SparseArray<Profile> profileSparseArray, ArrayList<Item> items, int accent, boolean showAdd, String titleValue, int icon) {
@@ -97,6 +99,7 @@ public class ProfileChooserFragment extends DialogFragment {
         title.setTextColor(Utils.getTextColorPrimary(getActivity()));
         title.setText(titleValue);
         title.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
+        if (typeface != null) title.setTypeface(typeface);
         add.setVisibility(showAdd ? View.VISIBLE : View.INVISIBLE);
         add.setColorFilter(Utils.getTextColorPrimary(getActivity()));
         add.setBackgroundResource(Utils.selectableItemBackgroundBorderless(getActivity()));
@@ -115,6 +118,7 @@ public class ProfileChooserFragment extends DialogFragment {
                 Profile profile = profileSparseArray.valueAt(i);
                 if (profile.getId() != 1) {
                     RowProfileView profileView = new RowProfileView(getActivity());
+                    profileView.setTypeface(typeface);
                     profileView.setProfile(profile, i == 0);
                     profileView.setAccent(accent);
                     profileView.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +142,7 @@ public class ProfileChooserFragment extends DialogFragment {
             for (Item item : items) {
                 TextView textView = new TextView(getActivity());
                 textView.setText(item.getTitle());
+                if (typeface != null) textView.setTypeface(typeface);
                 textView.setTag(item.getId());
                 textView.setBackgroundResource(Utils.selectableItemBackground(getActivity()));
                 textView.setPadding(padding, padding / 2, padding, padding / 2);
@@ -161,6 +166,29 @@ public class ProfileChooserFragment extends DialogFragment {
 
     public void setCallback(ProfileChooserCallback callback) {
         this.callback = callback;
+    }
+
+    public void updateTypeface(Typeface tf) {
+        if (tf == null) return;
+        setTypeface(tf);
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            View view = linearLayout.getChildAt(i);
+            if (view instanceof RowProfileView) {
+                ((RowProfileView) view).setTypeface(typeface);
+            }
+        }
+        for (int i = 0; i < linearLayout1.getChildCount(); i++) {
+            View view = linearLayout1.getChildAt(i);
+            if (view instanceof TextView) {
+                ((TextView) view).setTypeface(typeface);
+            }
+        }
+        title.setTypeface(typeface);
+    }
+
+    public void setTypeface(Typeface tf) {
+        if (tf == null) return;
+        typeface = tf;
     }
 
 }

@@ -28,6 +28,7 @@ package rebus.header.view;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
@@ -48,7 +49,7 @@ class ProfileChooser extends Dialog {
     private ProfileChooserCallback callback;
 
     @SuppressLint("RtlHardcoded")
-    ProfileChooser(Context context, SparseArray<Profile> profileSparseArray, ArrayList<Item> items, int accent, boolean showAdd, String titleValue, int icon) {
+    ProfileChooser(Context context, SparseArray<Profile> profileSparseArray, ArrayList<Item> items, int accent, boolean showAdd, String titleValue, int icon, Typeface tf) {
         super(context);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.hw_account_chooser);
@@ -61,6 +62,7 @@ class ProfileChooser extends Dialog {
         title.setTextColor(Utils.getTextColorPrimary(context));
         title.setText(titleValue);
         title.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
+        if (tf != null) title.setTypeface(tf);
         add.setVisibility(showAdd ? View.VISIBLE : View.INVISIBLE);
         add.setColorFilter(Utils.getTextColorPrimary(context));
         add.setBackgroundResource(Utils.selectableItemBackgroundBorderless(context));
@@ -78,6 +80,7 @@ class ProfileChooser extends Dialog {
             Profile profile = profileSparseArray.valueAt(i);
             if (profile.getId() != 1) {
                 RowProfileView profileView = new RowProfileView(context);
+                profileView.setTypeface(tf);
                 profileView.setProfile(profile, i == 0);
                 profileView.setAccent(accent);
                 profileView.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +102,7 @@ class ProfileChooser extends Dialog {
         for (Item item : items) {
             TextView textView = new TextView(context);
             textView.setText(item.getTitle());
+            if (tf != null) textView.setTypeface(tf);
             textView.setTag(item.getId());
             textView.setBackgroundResource(Utils.selectableItemBackground(context));
             textView.setPadding(padding, padding / 2, padding, padding / 2);
