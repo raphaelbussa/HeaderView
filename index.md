@@ -184,7 +184,10 @@ CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
 ![Screen](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/screen.png)
 
 ### Sample
-Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/app) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
+Browse the sample code [here](https://github.com/rebus007/HeaderView/tree/master/sample) or download sample app from the [Play Store](https://play.google.com/store/apps/details?id=rebus.header.view.sample) 
+
+### Javadoc
+Browse Javadoc [here](https://rebus007.github.io/HeaderView/javadoc/)
 
 ### App using Header View
 If you use this lib [contact me](mailto:raphaelbussa@gmail.com) and I will add it to the list below:
