@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Header View</string>
+    <string name="nav_settings">Settings</string>
+    <string name="account">Account</string>
+    <string name="action_info">Info</string>
+
+    <string name="info_message">
+        <![CDATA[
+            Header View is a library created by <b>Raphaël Bussa</b><br>
+            <a href="https://github.com/rebus007">GitHub</a> <a href="https://twitter.com/rebus_007">Twitter</a> <a href="https://plus.google.com/+RaphaelBussa/posts">Google+</a> <a href="https://www.linkedin.com/in/rebus007">Linkedin</a>
+        ]]>
+    </string>
+    <string name="close">Close</string>
+    <string name="open_drawer">Open Drawer</string>
+
+</resources>

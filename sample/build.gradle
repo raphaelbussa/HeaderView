@@ -22,8 +22,7 @@
  * SOFTWARE.
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.android.application'
 
 android {
 
@@ -31,6 +30,7 @@ android {
     buildToolsVersion var.buildTools
 
     defaultConfig {
+        applicationId "rebus.header.view.sample"
         minSdkVersion var.minSdk
         targetSdkVersion var.targetSdk
         versionCode 1
@@ -38,9 +38,6 @@ android {
     }
 
     buildTypes {
-        all {
-            resValue "string", "version", "${var.version}"
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -50,17 +47,12 @@ android {
     lintOptions {
         abortOnError false
     }
-
 }
 
 dependencies {
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile "com.android.support:support-annotations:${var.supportLib}"
-}
-
-publish {
-    userOrg = 'raphaelbussa'
-    groupId = 'rebus'
-    artifactId = 'header-view'
-    publishVersion = "${var.version}"
+    compile project(':library')
+    compile "com.android.support:appcompat-v7:${var.supportLib}"
+    compile "com.android.support:design:${var.supportLib}"
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

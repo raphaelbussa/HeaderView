@@ -834,6 +834,14 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         return headerCallback.onAdd();
     }
 
+    @SuppressWarnings("unused")
+    public void setTypeface(Typeface tf) {
+        typeface = tf;
+        username.setTypeface(tf);
+        email.setTypeface(tf);
+        invalidate();
+    }
+
     @RestrictTo(LIBRARY_GROUP)
     @IntDef({STYLE_NORMAL, STYLE_COMPACT})
     @IntRange(from = 1, to = 2)
@@ -846,14 +854,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     @IntRange(from = 1, to = 2)
     @Retention(RetentionPolicy.SOURCE)
     public @interface Theme {
-    }
-
-    @SuppressWarnings("unused")
-    public void setTypeface(Typeface tf) {
-        typeface = tf;
-        username.setTypeface(tf);
-        email.setTypeface(tf);
-        invalidate();
     }
 
 }
