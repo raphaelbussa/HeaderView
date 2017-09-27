@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
 
         Profile profile4 = new Profile.Builder()
                 .setId(8)
-                .setUsername("Claudio Pastorini")
-                .setEmail("pastorini.claudio@gmail.com")
-                .setAvatar("https://github.com/claudiopastorini.png?size=512")
+                .setUsername("Krzysztof Klimkiewicz")
+                .setEmail("krzkz94@gmail.com")
+                .setAvatar("https://github.com/krzykz.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1452509133926-2b180c6d6245?dpr=2&auto=format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
                 Profile newProfile = new Profile.Builder()
                         .setId(100)
                         .setUsername("Mattia Novelli")
-                        .setEmail("mattinove@me.com")
+                        .setEmail("nove.mattia@gmail.com")
                         .setAvatar("https://github.com/mattinove.png?size=512")
                         .setBackground("https://images.unsplash.com/photo-1478194409487-fa5c1eb18622?dpr=2&auto=format&fit=crop&w=767&h=496&q=80&cs=tinysrgb&crop=")
                         .build();
