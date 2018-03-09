@@ -27,7 +27,6 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion var.compileSdk
-    buildToolsVersion var.buildTools
 
     defaultConfig {
         applicationId "rebus.header.view.sample"
