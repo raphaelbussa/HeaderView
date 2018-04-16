@@ -1,0 +1,8 @@
+title: Nav Utils
+description: Easy manage commit Fragment and Activity, with some little extra
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions

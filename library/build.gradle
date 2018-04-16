@@ -53,8 +53,8 @@ android {
 }
 
 dependencies {
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile "com.android.support:support-annotations:${var.supportLib}"
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation "com.android.support:support-annotations:${var.supportLib}"
 }
 
 publish {

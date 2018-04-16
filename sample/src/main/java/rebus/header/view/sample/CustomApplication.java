@@ -46,17 +46,15 @@ public class CustomApplication extends Application {
             public void loadImage(Uri url, ImageView imageView, @ImageLoader.Type int type) {
                 switch (type) {
                     case ImageLoader.AVATAR:
-                        Glide.with(imageView.getContext())
+                        GlideApp.with(imageView.getContext())
                                 .load(url)
-                                .asBitmap()
                                 .placeholder(R.drawable.ic_placeholder)
                                 .error(R.drawable.ic_placeholder)
                                 .into(imageView);
                         break;
                     case ImageLoader.HEADER:
-                        Glide.with(imageView.getContext())
+                        GlideApp.with(imageView.getContext())
                                 .load(url)
-                                .asBitmap()
                                 .placeholder(R.drawable.ic_placeholder_bg)
                                 .error(R.drawable.ic_placeholder_bg)
                                 .into(imageView);
@@ -65,6 +63,7 @@ public class CustomApplication extends Application {
             }
 
         });
+
         /*CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("Oswald-Stencbab.ttf")
                 .setFontAttrId(R.attr.fontPath)
