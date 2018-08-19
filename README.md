@@ -1,6 +1,7 @@
 # Header View
 
 [![Join the chat at https://gitter.im/rebus007/HeaderView](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rebus007/HeaderView?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frebus007%2FHeaderView.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frebus007%2FHeaderView?ref=badge_shield)
 [ ![Download](https://api.bintray.com/packages/raphaelbussa/maven/header-view/images/download.svg) ](https://bintray.com/raphaelbussa/maven/header-view/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Header--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2123)
 
 ![Logo](https://raw.githubusercontent.com/rebus007/HeaderView/master/img/ic_launcher-web.png)
@@ -226,3 +227,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frebus007%2FHeaderView.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frebus007%2FHeaderView?ref=badge_large)
