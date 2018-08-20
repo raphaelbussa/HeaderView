@@ -54,10 +54,10 @@ class ProfileChooser extends Dialog {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.hw_account_chooser);
         boolean hvIsRTL = context.getResources().getBoolean(R.bool.is_right_to_left);
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.hw_profile_container);
-        LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.hw_action_container);
-        TextView title = (TextView) findViewById(R.id.hw_dialog_title);
-        ImageView add = (ImageView) findViewById(R.id.hv_add_profile);
+        LinearLayout linearLayout = findViewById(R.id.hw_profile_container);
+        LinearLayout linearLayout1 = findViewById(R.id.hw_action_container);
+        TextView title = findViewById(R.id.hw_dialog_title);
+        ImageView add = findViewById(R.id.hv_add_profile);
         add.setImageResource(icon);
         title.setTextColor(Utils.getTextColorPrimary(context));
         title.setText(titleValue);
@@ -66,13 +66,10 @@ class ProfileChooser extends Dialog {
         add.setVisibility(showAdd ? View.VISIBLE : View.INVISIBLE);
         add.setColorFilter(Utils.getTextColorPrimary(context));
         add.setBackgroundResource(Utils.selectableItemBackgroundBorderless(context));
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callback != null) {
-                    if (callback.onAdd()) {
-                        dismiss();
-                    }
+        add.setOnClickListener(v -> {
+            if (callback != null) {
+                if (callback.onAdd()) {
+                    dismiss();
                 }
             }
         });
@@ -83,14 +80,11 @@ class ProfileChooser extends Dialog {
                 profileView.setTypeface(tf);
                 profileView.setProfile(profile, i == 0);
                 profileView.setAccent(accent);
-                profileView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        RowProfileView rowProfileView = (RowProfileView) v;
-                        if (callback != null) {
-                            if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
-                                dismiss();
-                            }
+                profileView.setOnClickListener(v -> {
+                    RowProfileView rowProfileView = (RowProfileView) v;
+                    if (callback != null) {
+                        if (callback.onSelect(rowProfileView.getProfile().getId(), rowProfileView.isActive())) {
+                            dismiss();
                         }
                     }
                 });
@@ -108,14 +102,11 @@ class ProfileChooser extends Dialog {
             textView.setPadding(padding, padding / 2, padding, padding / 2);
             textView.setTextColor(Utils.getTextColorSecondary(context));
             textView.setGravity(Gravity.CENTER_VERTICAL | (hvIsRTL ? Gravity.RIGHT : Gravity.LEFT));
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int id = (int) v.getTag();
-                    if (callback != null) {
-                        if (callback.onItem(id)) {
-                            dismiss();
-                        }
+            textView.setOnClickListener(v -> {
+                int id = (int) v.getTag();
+                if (callback != null) {
+                    if (callback.onItem(id)) {
+                        dismiss();
                     }
                 }
             });

@@ -50,11 +50,15 @@ android {
         abortOnError false
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
-    implementation "com.android.support:support-annotations:${var.supportLib}"
+    implementation "androidx.annotation:annotation:${var.supportLib}"
 }
 
 publish {
@@ -62,4 +66,5 @@ publish {
     groupId = 'rebus'
     artifactId = 'header-view'
     publishVersion = "${var.version}"
+    desc = 'Create an header for android.support.design.widget.NavigationView'
 }

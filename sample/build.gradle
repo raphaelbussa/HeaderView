@@ -46,13 +46,18 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
     implementation project(':library')
-    implementation "com.android.support:appcompat-v7:${var.supportLib}"
-    implementation "com.android.support:design:${var.supportLib}"
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation "com.google.android.material:material:${var.supportLib}"
+    implementation "androidx.appcompat:appcompat:${var.supportLib}"
+    //implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

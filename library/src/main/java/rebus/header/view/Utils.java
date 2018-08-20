@@ -28,11 +28,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.TypedValue;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by raphaelbussa on 13/01/17.

@@ -34,7 +34,7 @@
     app:hv_show_add_button="true"
     app:hv_show_arrow="true"
     app:hv_show_gradient="true"
-    app:hv_style="normal"
+    app:hv_style="compact"
     app:hv_theme="light" />
 
     <!--

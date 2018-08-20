@@ -28,7 +28,7 @@ import android.app.Application;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import rebus.header.view.ImageLoader;
 
@@ -46,15 +46,13 @@ public class CustomApplication extends Application {
             public void loadImage(Uri url, ImageView imageView, @ImageLoader.Type int type) {
                 switch (type) {
                     case ImageLoader.AVATAR:
-                        GlideApp.with(imageView.getContext())
-                                .load(url)
+                        Picasso.get().load(url)
                                 .placeholder(R.drawable.ic_placeholder)
                                 .error(R.drawable.ic_placeholder)
                                 .into(imageView);
                         break;
                     case ImageLoader.HEADER:
-                        GlideApp.with(imageView.getContext())
-                                .load(url)
+                        Picasso.get().load(url)
                                 .placeholder(R.drawable.ic_placeholder_bg)
                                 .error(R.drawable.ic_placeholder_bg)
                                 .into(imageView);

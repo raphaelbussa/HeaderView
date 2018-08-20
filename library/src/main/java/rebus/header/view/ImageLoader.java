@@ -25,15 +25,16 @@
 package rebus.header.view;
 
 import android.net.Uri;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
-import android.support.annotation.RestrictTo;
 import android.widget.ImageView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
+import androidx.annotation.RestrictTo;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * Created by raphaelbussa on 13/01/17.

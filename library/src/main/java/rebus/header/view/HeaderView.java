@@ -32,12 +32,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
-import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -54,9 +48,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
+import androidx.annotation.RestrictTo;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * Created by raphaelbussa on 11/01/17.
@@ -442,12 +442,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         username.setVisibility(VISIBLE);
         email.setVisibility(VISIBLE);
         avatar.setTag(R.id.hv_first_profile, profile.getId());
-        avatar.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                headerCallback.onSelect((int) v.getTag(R.id.hv_first_profile), true);
-            }
-        });
+        avatar.setOnClickListener(v -> headerCallback.onSelect((int) v.getTag(R.id.hv_first_profile), true));
     }
 
     private void setSecondProfile(Profile profile) {
@@ -457,12 +452,9 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             ImageLoader.loadImage(profile.getAvatarUri(), avatar2, ImageLoader.AVATAR);
         avatar2.setVisibility(VISIBLE);
         avatar2.setTag(R.id.hv_second_profile, profile.getId());
-        avatar2.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                headerCallback.onSelect((int) v.getTag(R.id.hv_second_profile), false);
-                swapProfiles(1);
-            }
+        avatar2.setOnClickListener(v -> {
+            headerCallback.onSelect((int) v.getTag(R.id.hv_second_profile), false);
+            swapProfiles(1);
         });
     }
 
@@ -473,12 +465,9 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             ImageLoader.loadImage(profile.getAvatarUri(), avatar3, ImageLoader.AVATAR);
         avatar3.setVisibility(VISIBLE);
         avatar3.setTag(R.id.hv_third_profile, profile.getId());
-        avatar3.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                headerCallback.onSelect((int) v.getTag(R.id.hv_third_profile), false);
-                swapProfiles(2);
-            }
+        avatar3.setOnClickListener(v -> {
+            headerCallback.onSelect((int) v.getTag(R.id.hv_third_profile), false);
+            swapProfiles(2);
         });
     }
 
@@ -622,19 +611,16 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         arrow.setImageResource(R.drawable.hv_arrow);
         arrow.setBackgroundResource(Utils.selectableItemBackground(getContext()));
         arrow.setColorFilter(hvTextColor);
-        arrow.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hvFragmentManager != null) {
-                    ProfileChooserFragment profileChooserFragment = ProfileChooserFragment.newInstance(profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
-                    profileChooserFragment.setCallback(HeaderView.this);
-                    profileChooserFragment.setTypeface(typeface);
-                    profileChooserFragment.show(hvFragmentManager, ProfileChooserFragment.FRAGMENT_TAG);
-                } else {
-                    profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable, typeface);
-                    profileChooser.setCallback(HeaderView.this);
-                    profileChooser.show();
-                }
+        arrow.setOnClickListener(v -> {
+            if (hvFragmentManager != null) {
+                ProfileChooserFragment profileChooserFragment = ProfileChooserFragment.newInstance(profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable);
+                profileChooserFragment.setCallback(HeaderView.this);
+                profileChooserFragment.setTypeface(typeface);
+                profileChooserFragment.show(hvFragmentManager, ProfileChooserFragment.FRAGMENT_TAG);
+            } else {
+                profileChooser = new ProfileChooser(getContext(), profileSparseArray, itemArrayList, hvHighlightColor, hvShowAddButton, hvDialogTitle, hvAddIconDrawable, typeface);
+                profileChooser.setCallback(HeaderView.this);
+                profileChooser.show();
             }
         });
         arrow.setVisibility(hvShowArrow ? VISIBLE : GONE);

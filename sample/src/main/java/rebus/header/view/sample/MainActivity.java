@@ -24,61 +24,53 @@
 
 package rebus.header.view.sample;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import rebus.header.view.HeaderCallback;
 import rebus.header.view.HeaderView;
 import rebus.header.view.Item;
 import rebus.header.view.Profile;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+//import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
 
     private static final String TAG = MainActivity.class.getName();
 
     private HeaderView headerView;
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setOnMenuItemClickListener(this);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        headerView = navigationView.getHeaderView(0).findViewById(R.id.header_view);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        drawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                actionBarDrawerToggle.syncState();
+        toolbar.setNavigationOnClickListener(view -> {
+            if (drawerLayout != null && !drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        headerView = navigationView.getHeaderView(0).findViewById(R.id.header_view);
 
         Profile profile = new Profile.Builder()
                 .setId(2)
@@ -123,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
                 .build();
 
 
-        headerView.setStyle(HeaderView.STYLE_NORMAL);
+        headerView.setStyle(HeaderView.STYLE_COMPACT);
         headerView.setTheme(HeaderView.THEME_LIGHT);
         headerView.setShowGradient(true);
         headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
@@ -133,12 +125,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         //headerView.setAddIconDrawable(R.drawable.ic_action_settings);
         headerView.setDialogTitle("Choose account");
         headerView.setShowArrow(true);
-        headerView.setOnHeaderClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.closeDrawer(GravityCompat.START, true);
-            }
-        });
+        headerView.setOnHeaderClickListener(v -> drawerLayout.closeDrawer(GravityCompat.START, true));
         headerView.setFragmentManager(getFragmentManager());
         headerView.setCallback(new HeaderCallback() {
 
@@ -194,10 +181,12 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         super.onBackPressed();
     }
 
+/*
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+*/
 
     @SuppressWarnings("deprecation")
     private Spanned fromHtml(String value) {
