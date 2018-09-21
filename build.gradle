@@ -30,7 +30,7 @@ buildscript {
                 minSdk    : 14,
                 targetSdk : 28,
                 version   : "3.0.0",
-                supportLib: "1.0.0-rc01"
+                supportLib: "1.0.0-rc02"
         ]
     }
 
@@ -41,8 +41,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha06'
-        classpath 'com.novoda:bintray-release:0.8.1'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha11'
+        classpath 'guru.stefma.bintrayrelease:bintrayrelease:1.0.0'
     }
 }
 

@@ -22,29 +22,25 @@
   ~ SOFTWARE.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="rebus.header.view.sample">
+<rebus.header.view.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:hv_add_status_bar_height="true"
+    app:hv_background_color="@color/colorPrimaryDark"
+    app:hv_dialog_title="@string/account"
+    app:hv_highlight_color="@color/colorAccent"
+    app:hv_show_add_button="true"
+    app:hv_show_arrow="true"
+    app:hv_show_gradient="true"
+    app:hv_style="normal"
+    app:hv_theme="light" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-        android:name=".CustomApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme.Drawer"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CompactHeaderActivity" />
-        <activity android:name=".NormalHeaderActivity" />
-    </application>
-
-</manifest>
+    <!--
+        app:hv_add_icon="@drawable/ic_action_settings"
+        app:hv_profile_avatar="@drawable/ic_avatar_batman"
+        app:hv_profile_background="@drawable/ic_bg_batman"
+        app:hv_profile_email="batman@gotham.city"
+        app:hv_profile_username="Bruce Wayne"
+    -->

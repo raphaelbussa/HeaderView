@@ -25,7 +25,6 @@
 package rebus.header.view;
 
 import android.annotation.SuppressLint;
-import android.app.DialogFragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -41,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by raphaelbussa on 21/01/17.

@@ -13,4 +13,7 @@
     <string name="close">Close</string>
     <string name="open_drawer">Open Drawer</string>
 
+    <string name="compact_drawer">Compact drawer</string>
+    <string name="normal_drawer">Normal drawer</string>
+
 </resources>
