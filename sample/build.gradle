@@ -56,8 +56,8 @@ android {
 
 dependencies {
     implementation project(':library')
-    implementation "com.google.android.material:material:${var.supportLib}"
-    implementation "androidx.appcompat:appcompat:${var.supportLib}"
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     //implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

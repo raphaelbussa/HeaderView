@@ -58,11 +58,11 @@ android {
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:${var.supportLib}"
-    implementation "androidx.fragment:fragment:${var.supportLib}"
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.fragment:fragment:1.0.0'
 }
 
-version = '3.0.0'
+version = '3.0.2'
 group = 'rebus' 
 publish {
     userOrg = 'raphaelbussa'
