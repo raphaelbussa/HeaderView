@@ -58,15 +58,15 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.0'
-    implementation 'androidx.fragment:fragment:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.fragment:fragment:1.1.0'
 }
 
 publish {
     userOrg = 'raphaelbussa'
-    groupId = 'rebus'
-    artifactId = 'header-view'
-    publishVersion = '3.0.3'
+    groupId = 'com.raphaelbussa'
+    artifactId = 'headerview'
+    publishVersion = '4.0.0.alpha1'
     desc = 'Create an header for android.support.design.widget.NavigationView'
     website = 'https://rebus007.github.io/HeaderView/'
 }

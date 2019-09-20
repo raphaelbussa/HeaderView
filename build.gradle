@@ -26,10 +26,10 @@ buildscript {
 
     ext {
         var = [
-                compileSdk: 28,
+                compileSdk: 29,
                 minSdk    : 14,
-                targetSdk : 28,
-                version   : "3.0.3"
+                targetSdk : 29,
+                version   : "4.0.0.alpha1"
         ]
     }
 
