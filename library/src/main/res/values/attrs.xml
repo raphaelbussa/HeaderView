@@ -45,6 +45,7 @@
             <enum name="dark" value="2" />
         </attr>
         <attr name="hv_highlight_color" format="color" />
+        <attr name="hv_font" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="CircleImageView">

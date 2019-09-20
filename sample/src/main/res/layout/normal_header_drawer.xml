@@ -35,6 +35,7 @@
     app:hv_show_arrow="true"
     app:hv_show_gradient="true"
     app:hv_style="normal"
+    app:hv_font="@font/montserrat"
     app:hv_theme="light" />
 
     <!--

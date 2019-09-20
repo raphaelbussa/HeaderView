@@ -44,9 +44,11 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.FontRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.RestrictTo;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
 import java.lang.annotation.Retention;
@@ -102,6 +104,8 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     @DrawableRes
     private int hvAddIconDrawable;
     private String hvDialogTitle;
+    @FontRes
+    private int hvFont;
     private boolean hvIsRTL;
 
     private SparseArray<Profile> profileSparseArray = new SparseArray<>();
@@ -426,6 +430,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         headerCallback = new HeaderCallback();
         populateAvatar();
         setBackgroundColor(hvBackgroundColor);
+        if (hvFont != 0) setTypeface(ResourcesCompat.getFont(getContext(), hvFont));
     }
 
     private void setFirstProfile(Profile profile) {
@@ -524,6 +529,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             hvShowAddButton = typedArray.getBoolean(R.styleable.HeaderView_hv_show_add_button, true);
             hvDialogTitle = typedArray.getString(R.styleable.HeaderView_hv_dialog_title);
             hvAddIconDrawable = typedArray.getResourceId(R.styleable.HeaderView_hv_add_icon, R.drawable.hv_add_profile);
+            hvFont = typedArray.getResourceId(R.styleable.HeaderView_hv_font, 0);
             typedArray.recycle();
         }
 
@@ -821,7 +827,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         return headerCallback.onAdd();
     }
 
-    @SuppressWarnings("unused")
     public void setTypeface(Typeface tf) {
         typeface = tf;
         username.setTypeface(tf);
