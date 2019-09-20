@@ -791,7 +791,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             Bundle bundle = (Bundle) state;
             state = bundle.getParcelable("superState");
             //RESTORE CUSTOM VALUES
-            profileSparseArray = bundle.getSparseParcelableArray(PROFILE_LIST);
+            profileSparseArray=   bundle.getSparseParcelableArray(PROFILE_LIST)==null?new SparseArray<>(): bundle.getSparseParcelableArray(PROFILE_LIST);
             populateAvatar();
         }
         if (hvFragmentManager != null) {
