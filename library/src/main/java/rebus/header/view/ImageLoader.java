@@ -27,12 +27,12 @@ package rebus.header.view;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.RestrictTo;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 

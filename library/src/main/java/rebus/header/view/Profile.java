@@ -29,13 +29,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Spanned;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 

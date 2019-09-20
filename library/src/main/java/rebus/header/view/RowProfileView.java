@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**

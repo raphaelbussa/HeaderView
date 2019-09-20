@@ -41,12 +41,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -54,6 +48,13 @@ import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.RestrictTo;
 import androidx.fragment.app.FragmentManager;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
@@ -791,7 +792,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             Bundle bundle = (Bundle) state;
             state = bundle.getParcelable("superState");
             //RESTORE CUSTOM VALUES
-            profileSparseArray=   bundle.getSparseParcelableArray(PROFILE_LIST)==null?new SparseArray<>(): bundle.getSparseParcelableArray(PROFILE_LIST);
+            profileSparseArray = bundle.getSparseParcelableArray(PROFILE_LIST) == null ? new SparseArray<>() : bundle.getSparseParcelableArray(PROFILE_LIST);
             populateAvatar();
         }
         if (hvFragmentManager != null) {
