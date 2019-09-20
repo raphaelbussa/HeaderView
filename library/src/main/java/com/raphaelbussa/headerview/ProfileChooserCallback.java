@@ -22,27 +22,18 @@
  * SOFTWARE.
  */
 
-package rebus.header.view;
+package com.raphaelbussa.headerview;
 
 /**
- * Created by raphaelbussa on 18/01/17.
+ * Created by raphaelbussa on 21/01/17.
  */
 
-public class HeaderCallback implements ProfileChooserCallback {
+interface ProfileChooserCallback {
 
-    @Override
-    public boolean onSelect(int id, boolean isActive) {
-        return true;
-    }
+    boolean onSelect(int id, boolean isActive);
 
-    @Override
-    public boolean onItem(int id) {
-        return true;
-    }
+    boolean onItem(int id);
 
-    @Override
-    public boolean onAdd() {
-        return true;
-    }
+    boolean onAdd();
 
 }

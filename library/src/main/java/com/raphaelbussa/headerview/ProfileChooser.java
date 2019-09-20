@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package rebus.header.view;
+package com.raphaelbussa.headerview;
 
 
 import android.annotation.SuppressLint;

@@ -22,7 +22,7 @@
   ~ SOFTWARE.
   -->
 
-<manifest package="rebus.header.view">
+<manifest package="com.raphaelbussa.headerview">
 
     <application />
 

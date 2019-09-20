@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package rebus.header.view.sample;
+package com.raphaelbussa.headerview.sample;
 
 import android.app.Application;
 import android.net.Uri;
@@ -30,7 +30,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import rebus.header.view.ImageLoader;
+import com.raphaelbussa.headerview.ImageLoader;
 
 /**
  * Created by raphaelbussa on 13/01/17.

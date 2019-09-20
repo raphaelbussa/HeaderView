@@ -1,4 +1,4 @@
-package rebus.header.view.sample;
+package com.raphaelbussa.headerview.sample;
 
 import android.content.Intent;
 import android.os.Build;

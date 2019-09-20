@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package rebus.header.view;
+package com.raphaelbussa.headerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

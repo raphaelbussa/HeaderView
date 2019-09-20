@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package rebus.header.view.sample;
+package com.raphaelbussa.headerview.sample;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -35,15 +35,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import rebus.header.view.HeaderCallback;
-import rebus.header.view.HeaderView;
-import rebus.header.view.Item;
-import rebus.header.view.Profile;
+import com.raphaelbussa.headerview.HeaderCallback;
+import com.raphaelbussa.headerview.HeaderView;
+import com.raphaelbussa.headerview.Item;
+import com.raphaelbussa.headerview.Profile;
 //import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class CompactHeaderActivity extends AppCompatActivity {
+public class NormalHeaderActivity extends AppCompatActivity {
 
-    private static final String TAG = CompactHeaderActivity.class.getName();
+    private static final String TAG = NormalHeaderActivity.class.getName();
 
     private HeaderView headerView;
     private DrawerLayout drawerLayout;
@@ -51,9 +51,10 @@ public class CompactHeaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compact_header);
+        setContentView(R.layout.activity_normal_header);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
+        toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setNavigationOnClickListener(view -> {
             if (drawerLayout != null && !drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -106,7 +107,7 @@ public class CompactHeaderActivity extends AppCompatActivity {
                 .build();
 
 
-        headerView.setStyle(HeaderView.STYLE_COMPACT);
+        headerView.setStyle(HeaderView.STYLE_NORMAL);
         headerView.setTheme(HeaderView.THEME_LIGHT);
         headerView.setShowGradient(true);
         headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
@@ -123,7 +124,7 @@ public class CompactHeaderActivity extends AppCompatActivity {
             @Override
             public boolean onSelect(int id, boolean isActive) {
                 Log.d(TAG, "profile selected [" + id + "] isActive [" + isActive + "]");
-                Toast.makeText(CompactHeaderActivity.this, "profile selected [" + id + "] isActive [" + isActive + "]", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NormalHeaderActivity.this, "profile selected [" + id + "] isActive [" + isActive + "]", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START, true);
                 return true;
             }
