@@ -23,7 +23,7 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: 'com.novoda.bintray-release'
 
 android {
 
@@ -62,11 +62,11 @@ dependencies {
     implementation 'androidx.fragment:fragment:1.0.0'
 }
 
-version = '3.0.3'
-group = 'rebus' 
 publish {
     userOrg = 'raphaelbussa'
+    groupId = 'rebus'
     artifactId = 'header-view'
+    publishVersion = '3.0.3'
     desc = 'Create an header for android.support.design.widget.NavigationView'
     website = 'https://rebus007.github.io/HeaderView/'
 }
