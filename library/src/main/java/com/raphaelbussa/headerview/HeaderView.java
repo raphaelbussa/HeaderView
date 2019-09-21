@@ -48,6 +48,7 @@ import androidx.annotation.FontRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.RestrictTo;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
@@ -243,7 +244,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     /**
      * @param id remove profile from id
      */
-    public void removeProfile(int id) {
+    public void removeProfile(@Profile.IdValue int id) {
         for (int i = 0; i < profileSparseArray.size(); i++) {
             Profile profile = profileSparseArray.valueAt(i);
             if (profile.getId() == id) {
@@ -322,7 +323,7 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
      * @param color set HeaderView background color as color res
      */
     public void setBackgroundColorRes(@ColorRes int color) {
-        background.setBackgroundColor(Utils.getColor(getContext(), color));
+        background.setBackgroundColor(ContextCompat.getColor(getContext(), color));
     }
 
     /**

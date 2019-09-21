@@ -33,6 +33,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.core.text.HtmlCompat;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -254,7 +255,7 @@ public class Profile implements Parcelable {
          * @return current builder instance
          */
         public Builder setUsername(String username) {
-            this.username = Utils.fromHtml(username);
+            this.username = HtmlCompat.fromHtml(username, HtmlCompat.FROM_HTML_MODE_COMPACT);
             return this;
         }
 
@@ -263,7 +264,7 @@ public class Profile implements Parcelable {
          * @return current builder instance
          */
         public Builder setEmail(String email) {
-            this.email = Utils.fromHtml(email);
+            this.email = HtmlCompat.fromHtml(email, HtmlCompat.FROM_HTML_MODE_COMPACT);
             return this;
         }
 
