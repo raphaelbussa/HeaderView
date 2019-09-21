@@ -24,22 +24,17 @@
 
 <resources>
 
-    <style name="AppTheme" parent="AppTheme.Base" />
-
-    <style name="AppTheme.Drawer" parent="AppTheme.Base" />
-
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Base" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorPrimaryDark">?colorPrimary</item>
     </style>
 
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
+    <style name="AppTheme" parent="AppTheme.Base" >
+        <item name="android:statusBarColor">?colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Drawer" parent="AppTheme.Base" >
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

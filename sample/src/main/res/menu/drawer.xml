@@ -24,23 +24,9 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
-        <item android:title="@string/nav_settings" />
+        <item android:title="@string/item_1" android:checked="true" />
+        <item android:title="@string/item_2" />
+        <item android:title="@string/item_3" />
+        <item android:title="@string/item_4" />
     </group>
 </menu>

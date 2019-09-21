@@ -28,18 +28,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 import com.raphaelbussa.headerview.HeaderCallback;
 import com.raphaelbussa.headerview.HeaderView;
 import com.raphaelbussa.headerview.Item;
 import com.raphaelbussa.headerview.Profile;
-//import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CompactHeaderActivity extends AppCompatActivity {
 
@@ -67,7 +66,7 @@ public class CompactHeaderActivity extends AppCompatActivity {
                 .setId(2)
                 .setUsername("Raphaël Bussa")
                 .setEmail("raphaelbussa@gmail.com")
-                .setAvatar("https://github.com/rebus007.png?size=512")
+                .setAvatar("https://github.com/raphaelbussa.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1473220464492-452fb02e6221?dpr=2&auto=format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -91,7 +90,7 @@ public class CompactHeaderActivity extends AppCompatActivity {
                 .setId(8)
                 .setUsername("Krzysztof Klimkiewicz")
                 .setEmail("krzkz94@gmail.com")
-                .setAvatar("https://github.com/krzykz.png?size=512")
+                .setAvatar("https://github.com/krzkz94.png?size=512")
                 .setBackground("https://images.unsplash.com/photo-1452509133926-2b180c6d6245?dpr=2&auto=format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=")
                 .build();
 
@@ -109,11 +108,10 @@ public class CompactHeaderActivity extends AppCompatActivity {
         headerView.setStyle(HeaderView.STYLE_COMPACT);
         headerView.setTheme(HeaderView.THEME_LIGHT);
         headerView.setShowGradient(true);
-        headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
+        headerView.setHighlightColor(ContextCompat.getColor(this, R.color.colorSecondary));
         headerView.addProfile(profile, profile2, profile3, profile4);
         headerView.addDialogItem(item, item2);
         headerView.setShowAddButton(true);
-        //headerView.setAddIconDrawable(R.drawable.ic_action_settings);
         headerView.setDialogTitle("Choose account");
         headerView.setShowArrow(true);
         headerView.setOnHeaderClickListener(v -> drawerLayout.closeDrawer(GravityCompat.START, true));
@@ -159,8 +157,6 @@ public class CompactHeaderActivity extends AppCompatActivity {
 
         });
 
-        //headerView.addProfile(profile, profile2, profile3);
-
     }
 
     @Override
@@ -171,12 +167,5 @@ public class CompactHeaderActivity extends AppCompatActivity {
         }
         super.onBackPressed();
     }
-
-/*
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-*/
 
 }
