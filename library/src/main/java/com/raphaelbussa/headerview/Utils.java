@@ -26,7 +26,6 @@ package com.raphaelbussa.headerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.util.TypedValue;
 
 /**

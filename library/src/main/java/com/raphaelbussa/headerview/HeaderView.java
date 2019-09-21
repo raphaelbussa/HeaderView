@@ -33,7 +33,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
@@ -72,7 +71,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     public static final int STYLE_COMPACT = 2;
     public static final int THEME_LIGHT = 1;
     public static final int THEME_DARK = 2;
-    private static final String TAG = HeaderView.class.getName();
     private static final String PROFILE_LIST = "PROFILE_LIST";
     private int statusBarHeight;
 
@@ -134,7 +132,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
-        Log.d(TAG, "init");
         setupAttributeSet(attrs, defStyle);
         setupResources();
         addBackground();
@@ -192,7 +189,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             profileSparseArray.put(profile.getId(), profile);
         }
         populateAvatar();
-        Log.d(TAG, profileSparseArray.toString());
     }
 
     /**
@@ -203,7 +199,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             profileSparseArray.put(profile.getId(), profile);
         }
         populateAvatar();
-        Log.d(TAG, profileSparseArray.toString());
     }
 
     /**
@@ -214,7 +209,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
             profileSparseArray.put(profile.getId(), profile);
         }
         populateAvatar();
-        Log.d(TAG, profileSparseArray.toString());
     }
 
     /**
@@ -399,7 +393,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     private void populateAvatar() {
         int size = profileSparseArray.size();
-        Log.d(TAG, "profileSparseArray.size() [" + profileSparseArray.size() + "]");
         if (size >= 3) {
             size = 3;
         }
@@ -412,7 +405,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         avatar3.setVisibility(INVISIBLE);
         for (int i = 0; i < size; i++) {
             Profile profile = profileSparseArray.valueAt(i);
-            Log.d(TAG, "pos [" + i + "] " + profile.getUsername());
             switch (i) {
                 case 0:
                     setFirstProfile(profile);
@@ -535,7 +527,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
         }
 
         if ((hvUsername != null && !hvUsername.isEmpty()) || (hvEmail != null && !hvEmail.isEmpty()) || hvAvatar != 0 || hvBackground != 0) {
-            Log.d(TAG, "profile created from XML");
 
             Profile profile = new Profile.Builder()
                     .setId(1)
@@ -653,8 +644,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.d(TAG, "onLayout changed [" + changed + "]");
-        Log.d(TAG, "is_right_to_left [" + getResources().getBoolean(R.bool.is_right_to_left) + "]");
         if (!changed) return;
         background.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
         if (hvShowGradient) {
@@ -752,7 +741,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d(TAG, "onMeasure");
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec), getHeaderHeight(heightMeasureSpec));
     }
 
@@ -784,7 +772,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Log.d(TAG, "onSaveInstanceState");
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
         //STORE CUSTOM VALUES
@@ -794,7 +781,6 @@ public class HeaderView extends ViewGroup implements ProfileChooserCallback {
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        Log.d(TAG, "onRestoreInstanceState");
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             state = bundle.getParcelable("superState");
