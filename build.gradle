@@ -29,7 +29,7 @@ buildscript {
                 compileSdk: 28,
                 minSdk    : 14,
                 targetSdk : 28,
-                version   : "3.0.3"
+                version   : "3.0.4"
         ]
     }
 
@@ -40,7 +40,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         classpath 'com.novoda:bintray-release:0.9.1'
     }
 }
