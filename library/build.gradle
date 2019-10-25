@@ -23,8 +23,7 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.tcqq'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
 
@@ -62,4 +61,13 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.fragment:fragment:1.1.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+}
+
+publish {
+    userOrg = 'raphaelbussa'
+    groupId = 'rebus'
+    artifactId = 'header-view'
+    publishVersion = '3.0.3'
+    desc = 'Create an header for android.support.design.widget.NavigationView'
+    website = 'https://rebus007.github.io/HeaderView/'
 }

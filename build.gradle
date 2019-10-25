@@ -29,13 +29,14 @@ buildscript {
                 compileSdk: 28,
                 minSdk    : 14,
                 targetSdk : 28,
-                version   : "3.0.4"
+                version   : "3.0.3"
         ]
     }
 
     repositories {
         google()
         jcenter()
+        maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
     }
 
     dependencies {
@@ -48,6 +49,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
 
