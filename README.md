@@ -199,7 +199,7 @@ If you use this lib [contact me](mailto:raphaelbussa@gmail.com) and I will add i
 ### Developed By
 Raphaël Bussa - [raphaelbussa@gmail.com](mailto:raphaelbussa@gmail.com)
 
-[ ![Twitter](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/twitter-icon.png) ](https://twitter.com/rebus_007)[ ![Google Plus](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/google-plus-icon.png) ](https://plus.google.com/+RaphaelBussa/posts)[ ![Linkedin](https://raw.githubusercontent.com/rebus007/Header-View/master/img/social/linkedin-icon.png) ](https://www.linkedin.com/in/rebus007)
+[ ![Twitter](https://raw.githubusercontent.com/raphaelbussa/HeaderView/master/img/social/twitter-icon.png) ](https://twitter.com/raphaelbussa)[ ![Linkedin](https://raw.githubusercontent.com/raphaelbussa/HeaderView/master/img/social/linkedin-icon.png) ](https://www.linkedin.com/in/raphaelbussa)
 
 ### License
 ```
